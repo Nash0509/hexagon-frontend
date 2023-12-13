@@ -1,0 +1,60 @@
+.come {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: sans-serif;
+    background-color: black;
+    height: 100vh;
+}
+
+.come div {
+    border: 1px solid black;
+    padding: 2rem;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.come div input {
+    padding: 1rem;
+    margin-top: 1rem;
+    border-radius: 5px;
+    font-size: 1.5rem;
+}
+
+.come div button {
+    padding: 1rem;
+    margin-top: 1rem;
+    border-radius: 5px;
+    background-color: blue;
+    border: 0px;
+    color: white;
+}
+
+.logAgain {
+    text-decoration: none;
+    color: black;
+    margin-top: 1rem;
+}
+
+.cbsign {
+    color: white;
+    font-family: sans-serif;
+}
+
+.sign {
+    background-color: white;
+
+}
+
+.sign input {
+    text-align: center;
+}
+
+.sign input:hover {
+    border: 5px solid yellow;
+}
+
+.sign {
+    margin-top: 2rem;
+}

@@ -1,0 +1,238 @@
+.pura {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 220px; 
+    padding: 20px; /* Add padding to the main content */
+    box-sizing: border-box;
+    margin-left: 6rem;
+    margin-top: -140px;
+    font-family: sans-serif;
+}
+
+.pura1 {
+    padding-top: 10rem;
+    margin-right: 15rem;
+}
+
+
+.userNam {
+    font-size: 1.5rem;
+}
+
+.pic {
+    border-radius: 50%;
+    background-color: rgb(17, 161, 161);
+}
+
+.proInfo {
+    font-size: 8px;
+    margin-top: 8rem;
+    padding: 3rem;
+    margin-left: 3rem;
+    background-color: blue;
+    border: 1px solid black;
+    border-radius: 5px;
+    color: white;
+}
+
+.hea {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 95vh;
+    background-color:blue;
+    padding: 2rem;
+    top: 0;
+    left: 0;
+}
+
+.post {
+    height: 50vh;
+}
+
+.profileImage {
+    width: 150px;
+    border-radius: 50%;
+    border: 2px solid blue;
+    height: 150px;
+}
+
+.extra {
+    margin-top: 3rem;
+}
+
+.extra p {
+    font-size: 1rem;
+    padding: 0.5rem;
+}
+
+.extra p span {
+    background-color: aliceblue;
+    padding: 1rem;
+}
+
+.namWala {
+    font-size: 20px;
+    margin-top: 2rem;
+}
+
+.bioWala {
+    font-size: 1rem;
+    margin-top: 2rem;
+}
+
+.moreUsers {
+    margin-left: 3rem;
+    margin-top: 8rem;
+}
+
+.user {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+    margin-top: 1rem;
+    background-color: blue;
+    border-radius: 5px;
+    color: white;
+
+}
+
+.fivePic {
+    width: 60px;
+    border-radius: 50%;
+    height: 60px;
+    border: 2px solid black !important;
+}
+
+.user p {
+    margin-left: 1.5rem;
+}
+
+.user button {
+    border-radius: 5px;
+    padding: 0.3rem;
+    margin-left: 0.7rem;
+}
+
+.pot {
+    width: 300px;
+    height: 300px;
+    border: 1px solid black;
+}
+
+.post {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 13.5vw;
+    width: 80vw;
+}
+
+.post1 {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.post div {
+    margin-left: 2rem;
+    margin-top: 2rem;
+}
+
+.qwerty {
+    background-color: black;
+    height: 400vh;
+}
+
+.edit {
+    padding: 0.5rem;
+    border-radius: 5px;
+    border: 0px;
+
+}
+
+.extra p span {
+    color: black;
+}
+
+.mainPost {
+    text-align: center;
+    color: blue;
+    font-family: cursive;
+}
+
+.noposts {
+    color: rgba(255, 255, 255, 0.287);
+    font-family: cursive;
+    font-size:x-large;
+    margin-bottom: 20rem;
+}
+
+.squareLoad {
+    margin-left: 50vw;
+}
+
+.postsSp {
+    margin-top: 3rem;
+    margin-left: 3rem;
+}
+
+.lock {
+    margin-top: 2rem;
+}
+
+.overlay {
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 100%;
+    top: 10;
+    left: 1;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.768);
+    z-index: 2;
+    cursor: pointer;
+  }
+  
+  .text{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 50px;
+    color: white;
+    transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    background-color: black;
+    padding: 1rem;
+    padding-bottom: 2rem;
+    border-radius: 5px;
+    border: 1px solid white;
+  }
+
+  .overlayImage {
+    width: 400px;
+    margin-bottom: 10rem;
+  }
+
+  .imageWala {
+    padding: 2rem;
+  }
+
+  .text p span {
+    font-size: 40px;
+  }
+
+  .text p {
+    margin-top: -150px;
+    text-align: center;
+  }
+
+  .chal {
+    padding: 0.5rem;
+    font-family: sans-serif;
+    border: 0px;
+    border-radius: 5px;
+    font-size: 1rem;
+  }

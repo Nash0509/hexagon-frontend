@@ -1,0 +1,69 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.cre {
+    background-color: black;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: sans-serif;
+}
+
+.cre p {
+    font-size: 2rem;
+}
+
+
+
+.others input{
+    padding: 1rem;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+.cre1 {
+    border: 1px solid black;
+    padding: 2rem;
+    border-radius: 5px;
+    background-color: white;
+}
+
+.showImage img{
+    width: 200px;
+    border-radius: 5px;
+}
+
+.showImage {
+    text-align: center;
+    margin-top: 1.5rem;
+}
+
+.icoo {
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+.cross {
+    margin-left: 12rem;
+}
+
+.others button {
+    padding: 0.7rem;
+    border-radius: 5px;
+    background-color: blue;
+    color: white;
+    border: 0px;
+    margin-top: 3rem;
+    
+}
+
+.but {
+    text-align: center;
+}
+

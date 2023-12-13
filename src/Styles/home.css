@@ -1,0 +1,68 @@
+.Anfo1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column ;
+    font-family: sans-serif;
+    height : 60vh;
+    padding: 1rem;
+}
+
+.Anfo0 {
+    background-color: black;
+    height: 100vh;
+    color: white;
+}
+
+.Anfo2 {
+    margin-bottom: 2rem;
+    margin-top: 5.5rem;
+}
+
+.Anfo {
+    text-align: center;
+    border: 1px solid black;
+    padding: 2rem !important;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+    background-color: whitesmoke;
+    border-radius: 5px;
+}
+
+.Anfo input {
+    padding: 1rem;
+    border-radius: 5px;
+    margin-top: 1rem;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+.Anfo input:hover {
+    border: 5px solid yellow;
+}
+
+.Anfo button {
+    padding: 1rem;
+    border-radius: 5px;
+    margin-top: 1rem;
+    font-size: 1rem;
+    background-color: blue;
+    color: white;
+    border: 0px;
+}
+
+.setup {
+    font-family : sans-serif;
+    text-align : center;
+    padding-top : 4rem;
+    color: white;
+    margin-bottom: 3rem;
+}
+
+.profile-pic {
+    width: 100px;
+    margin-top: 2rem;
+    border: 1px solid black;
+    padding: 1rem;
+    border-radius: 5px;
+}

@@ -1,0 +1,160 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.allPostHome {
+    background-color: black;
+    color: white;
+}
+
+.allposts-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.line {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    margin-bottom: 3rem;
+}
+.line div {
+    padding: 1rem;
+}
+
+.post-image {
+    width:400px;
+    height: 400px;
+}
+
+.niru {
+    color: white !important;
+    text-align: center;
+    padding-top: 4rem;
+    font-family: cursive;
+    color: blue !important;
+}
+
+.post {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 14rem;
+}
+
+.info {
+    background-color: rgb(30, 29, 29);
+    width: 370px;
+    border-radius: 5px;
+    border: 0px;
+    display: flex;
+    align-items: center;
+    margin-bottom: -10px;
+}
+
+.info p {
+    margin-left: 2rem;
+    color: white !important;
+    font-family: cursive;
+}
+
+.info img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px solid blue;
+}
+
+.captionDiv {
+    background-color: rgb(30, 29, 29);
+    border-radius: 5px;
+    font-family: cursive;
+    width: 370px;
+    margin-top: 0.5rem;
+}
+
+.captionDiv p {
+    display: flex;
+    align-items: center;
+}
+
+.like {
+margin-right: 1rem;
+color: #5e5858;
+}
+
+.us {
+    font-size: 12px;
+    color: rgb(164, 136, 136);
+}
+
+.comment input {
+    background-color:rgb(30, 29, 29);
+    border : 0px;
+    padding: 1rem;
+    width: 307px;
+    color: white;
+    font-family: cursive;
+}
+
+.comment button {
+    background-color: blue;
+    color: white;
+    padding: 1rem;
+    border: 0px;
+    width: 60px;
+    margin-left: 3px;
+}
+
+.comment {
+    margin-top: -12px;
+    font-family: cursive;
+}
+
+.you {
+    margin-right: 1rem;
+}
+
+.comment p span {
+    color: rgb(64, 60, 60);
+    margin-right: 1rem;
+}
+
+.allComments {
+    background-color: rgb(30, 29, 29);
+    width: 370px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    margin-top: -13px;
+}
+
+.allComments button {
+    padding: 0.5rem;
+    background-color: blue;
+    color: white;
+    border: 0px;
+}
+
+.comm {
+    font-family: cursive;
+}
+
+.comm p span {
+    color: #5e5858;
+    margin-right: 1rem;
+}
+
+.makeIt {
+    margin-left: 1rem;
+}
+
+.namaste {
+    position: absolute;
+    margin-bottom: 40rem;
+}

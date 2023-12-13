@@ -1,0 +1,17 @@
+.pura1 {
+    margin-top: 0.1rem;
+}
+
+.follow {
+    padding: 0.5rem;
+    border-radius: 5px;
+    border: 0px;
+    background-color: blue;
+    color: white;
+}
+
+.post2 {
+    display: flex;
+    justify-content: center;
+    margin-right: 12rem;
+}

@@ -168,7 +168,7 @@ const ViewProfile = () => {
 
     async function followers() {
 
-     await fetch(`hhttps://hexagon-h6fl.onrender.com/noOfFollowers/${id}`)
+     await fetch(`https://hexagon-h6fl.onrender.com/noOfFollowers/${id}`)
      .then((res) => res.json())
      .then((res) => {
       console.log("Hello : "+ res);

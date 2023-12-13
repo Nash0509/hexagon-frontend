@@ -15,7 +15,7 @@ const Login = () => {
    const navigate = useNavigate();
 
   async  function handleLogIn() {
-
+toast.info("Please wait...")
     const userData = {
         email : email,
         password : password,

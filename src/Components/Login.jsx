@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import Home from './Home';
 import { Link } from 'react-router-dom';
 import {FaConnectdevelop} from 'react-icons/fa';
+import Joi from 'joi';
 
 const Login = () => {
 
@@ -16,10 +17,12 @@ const Login = () => {
 
   async  function handleLogIn() {
 toast.info("Please wait...")
+
     const userData = {
         email : email,
         password : password,
     };
+
 
     const already = await fetch(`https://hexagon-h6fl.onrender.com/sign/${email}/${password}`);
     
@@ -29,7 +32,6 @@ toast.info("Please wait...")
       toast.warning("Email already in use, login instead...");
 
     }
-
     else {
          
       try {
@@ -40,18 +42,20 @@ toast.info("Please wait...")
             },
             body : JSON.stringify(userData),
           });
-    
-          if(response.ok) {
-            const redBody = await response.json();
-            console.log(redBody._id);
+
+          const redBody = await response.json();
+
+          if(redBody._id === undefined) {
+              toast.warning(redBody[0].message)
+          }
+
+       else  {
             navigate(`/home/${redBody._id}`);
             console.log('Data submitted successfully!');
             toast.success('You have been logged in!');
+            console.log(redBody);
           }
-          else {
-            console.log("There was an error!")
-            toast.error('There was an error');
-          }
+
       }
       catch (err) {
         console.log('There was an error : ' + err.message);

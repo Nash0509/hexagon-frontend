@@ -20,8 +20,9 @@ const Comeback = () => {
 
       const response = await fetch(`https://hexagon-h6fl.onrender.com/sign/${email}/${password}`);
 
-      if(response.ok) {
-        const resBody = await response.json();
+      const resBody = await response.json();
+
+    if(response.ok) {
         console.log(resBody._id);
         const response2 = await fetch(`https://hexagon-h6fl.onrender.com/find/${resBody._id}`);
         if(response2.ok) {

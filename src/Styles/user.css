@@ -142,7 +142,7 @@
 
 .qwerty {
     background-color: black;
-    height: 400vh;
+    overflow: auto;
 }
 
 .edit {
@@ -235,4 +235,47 @@
     border: 0px;
     border-radius: 5px;
     font-size: 1rem;
+  }
+  
+  @media screen and (max-width : 1234px) {
+    
+     .pura {
+        display: flex;
+        flex-direction: column;
+     }
+     .proInfo {
+        margin-top: -3rem;
+     }
+     .pic {
+        margin-top: 10rem;
+        margin-bottom: 4rem;
+     }
+     .moreUsers {
+        margin-top: 8px;
+     }
+     .extra {
+        margin-top: 30px;
+
+     }
+     .extra p span {
+        padding: 5px;
+        font-size: 15px;
+     }
+     .mainPost {
+        margin-left: 150px;
+     }
+     .post1 {
+        margin-left: 220px;
+     }
+
+     
+
+  }
+  @media screen and (max-width : 260px) {
+       
+      .extra {
+        background-color: black;
+      }
+
+
   }

@@ -198,10 +198,6 @@ await fetch(`https://hexagon-h6fl.onrender.com/like/${id}/${uid}`, {
         {posts.map(function (post, index) {
           return (
             <div className='line' key={index}>
-              <div className='info'>
-                <img src={allUrls[index]} alt='pp' />
-                <p>{allUserNames[index]}</p>
-              </div>
               <div className='post'>
                 <img
                   src={`https://hexagon-h6fl.onrender.com/profile-pic/${post.post}`}
@@ -209,7 +205,12 @@ await fetch(`https://hexagon-h6fl.onrender.com/like/${id}/${uid}`, {
                   className='post-image'
                 />
               </div>
-              <div className='captionDiv'>
+             <div className="all">
+             <div className='info'>
+                <img src={allUrls[index]} alt='pp' />
+                <p>{allUserNames[index]}</p>
+              </div>
+               <div className='captionDiv'>
                 <p>
                   <FaThumbsUp
                     size={25}
@@ -242,6 +243,7 @@ await fetch(`https://hexagon-h6fl.onrender.com/like/${id}/${uid}`, {
                 }}>Get comments</button>
                 <div className='comm' id={`comm${index}`}></div>
               </div>
+             </div>
             </div>
           );
         })}

@@ -11,6 +11,7 @@ import CreatePost from './Components/CreatePost'
 import AllPosts from './Components/AllPosts'
 import ViewProfile from './Components/ViewProfile'
 import EditProfile from './Components/EditProfile'
+import Footer from './Components/Footer'
 
 const App = () => {
   return (
@@ -27,6 +28,7 @@ const App = () => {
         <Route path='/viewProfile/:id/:back' element={<ViewProfile />}/>
         <Route path='/EditProfile/:id' element = {<EditProfile/>}/>
       </Routes>
+      <Footer />
     </Router>
   )
 }

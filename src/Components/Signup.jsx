@@ -159,6 +159,7 @@ const Signup = () => {
 
      }
      getLikes();
+     console.log("Measures here! : " + window.innerHeight+ "Width : "+window.innerWidth)
 
  }, [])
 

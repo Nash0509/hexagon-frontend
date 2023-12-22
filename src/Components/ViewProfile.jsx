@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import { useParams } from 'react-router-dom';
 import '../Styles/user.css';
-import { FaUser, FaClipboardList, FaPlusCircle, FaHome, FaHeart, FaEdit, FaUserFriends, FaLock } from 'react-icons/fa';
+import { FaUser, FaClipboardList, FaPlusCircle, FaHome, FaHeart, FaLock, FaConnectdevelop, FaSignOutAlt } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
 import { SquareLoader } from 'react-spinners';
 
@@ -28,14 +28,14 @@ const ViewProfile = () => {
     setLoading(true);
 
     try {
-      fetch(`https://hexagon-h6fl.onrender.com/display/${id}`)
+      fetch(`http://localhost:3000/display/${id}`)
         .then((res) => res.json())
         .then((data) => {
           console.log(data);
           setName(data.name);
           setUserName(data.userName);
           setbio(data.dis);
-          setUrl(`https://hexagon-h6fl.onrender.com/profile-pic/${data.profilePic}`);
+          setUrl(`http://localhost:3000/profile-pic/${data.profilePic}`);
           setUid(data.uid);
           setLoading(false);
         });
@@ -47,7 +47,7 @@ const ViewProfile = () => {
 
   useEffect(() => {
     try {
-      fetch('https://hexagon-h6fl.onrender.com/getFive')
+      fetch('http://localhost:3000/getFive')
         .then((res) => res.json())
         .then((res) => {
           console.log(res);
@@ -60,7 +60,7 @@ const ViewProfile = () => {
   }, [id]);
 
   useEffect(() => {
-    fetch(`https://hexagon-h6fl.onrender.com/getPosts/${id}`)
+    fetch(`http://localhost:3000/getPosts/${id}`)
       .then((response) => response.json())
       .then((res) => {
         console.log(res);
@@ -86,7 +86,7 @@ const ViewProfile = () => {
    
     if(follows === true) {
 
-      await fetch(`https://hexagon-h6fl.onrender.com/unFollow/${back}/${id}`, {
+      await fetch(`http://localhost:3000/unFollow/${back}/${id}`, {
         method : 'DELETE',
         headers : {
           'Content-Type' : 'application-json',
@@ -109,7 +109,7 @@ const ViewProfile = () => {
     if(follows === false) {
 
       try {
-        const response = await fetch(`https://hexagon-h6fl.onrender.com/follow/${back}/${id}`, {
+        const response = await fetch(`http://localhost:3000/follow/${back}/${id}`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -137,7 +137,7 @@ const ViewProfile = () => {
 
       async function doesFollow() {
 
-      const result = await fetch(`https://hexagon-h6fl.onrender.com/follower/${back}/${id}`)
+      const result = await fetch(`http://localhost:3000/follower/${back}/${id}`)
       if(result.status === 200) {
         console.log("Follows");
         setFollows(true);
@@ -155,7 +155,7 @@ const ViewProfile = () => {
      
     async function following() {
 
-        await fetch(`https://hexagon-h6fl.onrender.com/following/${id}`)
+        await fetch(`http://localhost:3000/following/${id}`)
         .then((res) => res.json())
         .then((res) => {
           setFollowing(res.length);
@@ -168,7 +168,7 @@ const ViewProfile = () => {
 
     async function followers() {
 
-     await fetch(`https://hexagon-h6fl.onrender.com/noOfFollowers/${id}`)
+     await fetch(`http://localhost:3000/noOfFollowers/${id}`)
      .then((res) => res.json())
      .then((res) => {
       console.log("Hello : "+ res);
@@ -184,17 +184,40 @@ const ViewProfile = () => {
   
 
   return (
-    <div className='qwerty'>
+    <div className='qwerty ytrewq'>
       {loading === true ? (
         <SquareLoader size={100} color='blue' className='squareLoad'/>
       ) : (
         <div>
           <div className='hea'>
-            <FaUser size={50} onClick={() => {
+
+            <Link style={{marginBottom:'6rem'}} to={`/signup/${back}`}><FaConnectdevelop size={40} color='black'/></Link>
+            <br />
+            <br />
+            <br />
+            <br />
+
+            <Link to={`/allPosts/${back}`}><FaHome color='black' size={40}/></Link>
+            <br />
+            <br />
+
+          <Link to={`/notification/${back}`}><FaHeart size={40} color='black'/></Link>
+          <br />
+            <br />
+          <Link to={`/createPost/${back}`}><FaPlusCircle color='black' size={40}/></Link>
+          <br />
+          <br />
+            <FaUser size={40} onClick={() => {
                    navigate(`/signup/${back}`)
             }}/>
+            <br />
+            <br />
+            <br />
+            <Link style={{marginTop:'7rem'}} to={`/test/${back}`}><FaSignOutAlt color='black' size={30}/></Link>
+
+           
           </div>
-          <div className='pura pura1'>
+          <div className='pura pura1 pura2 pura3'>
             <div className='pic'>
               {url ? (
                 <img src={url} className='profileImage' alt='profile' />
@@ -210,7 +233,7 @@ const ViewProfile = () => {
                 {' '}
                 &nbsp;&nbsp;&nbsp;
               </div>
-              <div className='extra'>
+              <div className='extra extra1'>
                 <p>
                   <span>{posty.length} POSTS</span> &nbsp;&nbsp;&nbsp;{' '}
                   <span>{followers} FOLLOWERS</span> &nbsp;&nbsp;&nbsp;
@@ -235,7 +258,7 @@ const ViewProfile = () => {
                 ) : (
                   posty.map((pic, index) => (
                     <div key={index}>
-                      <img src={`https://hexagon-h6fl.onrender.com/profile-pic/${pic.post}`} alt={`post-${index}`} className='pot' />
+                      <img src={`http://localhost:3000/profile-pic/${pic.post}`} alt={`post-${index}`} className='pot' />
                     </div>
                   ))
                 )}

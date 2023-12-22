@@ -13,6 +13,31 @@ const Login = () => {
    const [password, setPassword] = useState('');
    const [id, setId] = useState('');
    const navigate = useNavigate();
+  
+
+   useEffect(() => {
+
+    let c = false;
+        
+    console.log("This is the cookies : "+ document.cookie);
+    const a = document.cookie.split(';');
+    a.forEach((cookie) => {
+  
+      let b =  cookie.split('=');
+       if(b[1] == 'hexagon') {
+        c = true;
+       }
+  
+    })
+    if(c === true) {
+      toast.warning("You are already logged in");
+      window.history.back();
+      navigate(`/signup/${localStorage.getItem('logId')}`);
+
+    }
+  
+  }, [])
+   
 
   async  function handleLogIn() {
 toast.info("Please wait...")
@@ -23,7 +48,7 @@ toast.info("Please wait...")
     };
 
 
-    const already = await fetch(`https://hexagon-h6fl.onrender.com/sign/${email}/${password}`);
+    const already = await fetch(`http://localhost:3000/sign/${email}/${password}`);
     
     if(already.ok) {
 
@@ -34,7 +59,7 @@ toast.info("Please wait...")
     else {
          
       try {
-        const response =    await fetch('https://hexagon-h6fl.onrender.com/login', {
+        const response =    await fetch('http://localhost:3000/login', {
             method : 'POST',
             headers : {
                 'Content-Type' : 'application/json',
@@ -52,6 +77,7 @@ toast.info("Please wait...")
             navigate(`/home/${redBody._id}`);
             console.log('Data submitted successfully!');
             toast.success('You have been logged in!');
+            document.cookie = `name=hexagon;expires=Thu, 01 Jan 2024 00:00:00 UTC;path=/`;
             console.log(redBody);
           }
 
@@ -65,7 +91,8 @@ toast.info("Please wait...")
 
    }
 
-  return (
+
+     return (
     <div className='log'>
        <div className='log1'>
         <FaConnectdevelop size={50} className='instagramLogo'/>

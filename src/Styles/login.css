@@ -38,7 +38,8 @@
 }
 
 .log div input:hover {
-    border: 5px solid yellow;
+    background-color: rgb(205, 223, 217);
+    color: rgb(0, 0, 0);
 }
 
 .log div button {

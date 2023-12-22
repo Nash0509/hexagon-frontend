@@ -25,7 +25,7 @@ const AllPosts = () => {
 
       setLoading(true);
       try {
-        const response = await fetch('https://hexagon-h6fl.onrender.com/allposts');
+        const response = await fetch('http://localhost:3000/allposts');
         const data = await response.json();
         console.log(data);
         setPosts(data);
@@ -35,12 +35,12 @@ const AllPosts = () => {
           const uid = post.uid;
 
           try {
-            const res = await fetch(`https://hexagon-h6fl.onrender.com/display/${uid}`);
+            const res = await fetch(`http://localhost:3000/display/${uid}`);
             const userData = await res.json();
 
             return {
               userName: userData.userName,
-              url: `https://hexagon-h6fl.onrender.com/profile-pic/${userData.profilePic}`,
+              url: `http://localhost:3000/profile-pic/${userData.profilePic}`,
               uid : userData.uid,
             };
           } catch (err) {
@@ -72,6 +72,7 @@ const AllPosts = () => {
     }
 
     fetchPosts();
+    console.log("Rescue : "+ window.innerHeight + " width : "+ window.innerWidth);
   }, []);
 
  async function handleLike(index, uid) {
@@ -80,7 +81,7 @@ const a = document.getElementById(index);
 a.style.color = 'green';
 document.getElementById(`${index}${index}`).style.color = '#5e5858';
 
-await fetch(`https://hexagon-h6fl.onrender.com/like/${id}/${uid}`, {
+await fetch(`http://localhost:3000/like/${id}/${uid}`, {
   method: 'POST',
   headers : {
     'Content-Type': 'application/json',
@@ -99,7 +100,7 @@ await fetch(`https://hexagon-h6fl.onrender.com/like/${id}/${uid}`, {
 
   async function handleDislike(uid, index) {
 
-     await fetch(`https://hexagon-h6fl.onrender.com/unLike/${id}/${uid}`, {
+     await fetch(`http://localhost:3000/unLike/${id}/${uid}`, {
       method : 'DELETE',
       headers : {
         'Content-Type': 'application/json',
@@ -122,7 +123,7 @@ await fetch(`https://hexagon-h6fl.onrender.com/like/${id}/${uid}`, {
 
   async function handleComment(uid, index, key) {
     try {
-      await fetch(`https://hexagon-h6fl.onrender.com/comment/${id}/${uid}/${comment}/${key}`, {
+      await fetch(`http://localhost:3000/comment/${id}/${uid}/${comment}/${key}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -155,21 +156,24 @@ await fetch(`https://hexagon-h6fl.onrender.com/like/${id}/${uid}`, {
 
   async function getComments(uid, key) {
 
-     await fetch(`https://hexagon-h6fl.onrender.com/comment/${id}/${uid}/${key}`)
+     await fetch(`http://localhost:3000/comment/${id}/${uid}/${key}`)
      .then((res) => {
-      if(res.ok) {
-        toast.success("Got  it!")
-      }
       return res.json();
      })
      .then((res) => {
+      console.log("Iska lenght : " , res.length);
+        if(res.length == 0) {
+          toast.info("No comments yet...");
+        }
+        else toast.info("Comments fetched successfully!");
+
       console.log(res)
       setUidComment(res);
 
      })
 
 
-     .catch((err) => console.log("Din't got!"))
+     .catch((err) => console.log("Din't got!"+ err))
 
   }
 
@@ -187,7 +191,10 @@ await fetch(`https://hexagon-h6fl.onrender.com/like/${id}/${uid}`, {
   return ( (loading) ? (<SquareLoader size={100} color='blue' />) : (
     <div className='allPostHome'>
       <div className='hea'>
-        <FaConnectdevelop size={50} color='black' className='namaste'/>
+        <FaConnectdevelop size={50} color='black' className='namaste'/><br />
+       <Link style={{color:'black'}} to={`/notification/${id}`}> <FaHeart size={40}/></Link><br /><br />
+       <Link to={`/createpost/${id}`}><FaPlusCircle size={40} color='black'/></Link>
+       <br /><br />
         <Link to={`/signup/${id}`} style={{position:'relative'}}> 
           {' '}
           <FaUser size={40} color='black' />
@@ -200,12 +207,11 @@ await fetch(`https://hexagon-h6fl.onrender.com/like/${id}/${uid}`, {
             <div className='line' key={index}>
               <div className='post'>
                 <img
-                  src={`https://hexagon-h6fl.onrender.com/profile-pic/${post.post}`}
+                  src={`http://localhost:3000/profile-pic/${post.post}`}
                   alt='postPic'
                   className='post-image'
                 />
-              </div>
-             <div className="all">
+              </div>            <div className="all">
              <div className='info'>
                 <img src={allUrls[index]} alt='pp' />
                 <p>{allUserNames[index]}</p>
@@ -226,7 +232,7 @@ await fetch(`https://hexagon-h6fl.onrender.com/like/${id}/${uid}`, {
                 </p>
               </div>
               <div className='comment' id={`comment${index}`}>
-                <input type='text' placeholder='comment' onChange={(e) => setComment(e.target.value)} id='inny'/>
+                <input type='text' placeholder='comment' onChange={(e) => setComment(e.target.value)} id='inny' className='innova'/>
                 <button
                   onClick={() => {
                     const uid = post.uid;

@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import { useParams } from 'react-router-dom';
 import '../Styles/user.css';
-import { FaUser, FaClipboardList, FaPlusCircle, FaHome, FaHeart, FaEdit, FaUserFriends, FaComment, FaThumbsUp, FaConnectdevelop } from 'react-icons/fa';
+import { FaUser, FaClipboardList, FaPlusCircle, FaHome, FaHeart, FaEdit, FaUserFriends, FaComment, FaThumbsUp, FaConnectdevelop, FaSignOutAlt } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
 import { SquareLoader } from 'react-spinners';
 
@@ -22,19 +22,44 @@ const Signup = () => {
   const [likeCount, setLikeCount] = useState(0);
   const { id } = useParams();
   const navigate = useNavigate();
+  const [caption, setCaption] = useState("");
+  const [createdAt, setCreatedAt] = useState("");
+
+
+  useEffect(() => {
+
+    let c = false;
+      
+    console.log("This is the cookies : "+ document.cookie);
+    const a = document.cookie.split(';');
+    a.forEach((cookie) => {
+
+      let b =  cookie.split('=');
+       if(b[1] == 'hexagon') {
+        c = true;
+       }
+
+    })
+    if(c === false) {
+      navigate('/login');
+      toast.warning("You need to login first...");
+    }
+
+  }, [])
 
   useEffect(() => {
     setLoading(true);
+    console.log("Angela white : "+ localStorage.getItem('logId'));
 
     try {
-      fetch(`https://hexagon-h6fl.onrender.com/display/${id}`)
+      fetch(`http://localhost:3000/display/${id}`)
         .then((res) => res.json())
         .then((data) => {
           console.log(data);
           setName(data.name);
           setUserName(data.userName);
           setbio(data.dis);
-          setUrl(`https://hexagon-h6fl.onrender.com/profile-pic/${data.profilePic}`);
+          setUrl(`http://localhost:3000/profile-pic/${data.profilePic}`);
           setUid(data.uid);
           setLoading(false);
         });
@@ -46,7 +71,7 @@ const Signup = () => {
 
   useEffect(() => {
     try {
-      fetch('https://hexagon-h6fl.onrender.com/getFive')
+      fetch(`http://localhost:3000/getFive/${id}`)
         .then((res) => res.json())
         .then((res) => {
           console.log(res);
@@ -59,7 +84,7 @@ const Signup = () => {
   }, [id]);
 
   useEffect(() => {
-    fetch(`https://hexagon-h6fl.onrender.com/getPosts/${id}`)
+    fetch(`http://localhost:3000/getPosts/${id}`)
       .then((response) => response.json())
       .then((res) => {
         console.log(res);
@@ -80,7 +105,7 @@ const Signup = () => {
   useEffect(() => {
     async function fetchFollowing() {
       try {
-        const res = await fetch(`https://hexagon-h6fl.onrender.com/following/${id}`);
+        const res = await fetch(`http://localhost:3000/following/${id}`);
         const data = await res.json();
         setFollowing(data.length);
         console.log(data.length + " == " + data);
@@ -91,7 +116,7 @@ const Signup = () => {
 
     async function fetchFollowers() {
       try {
-        const res = await fetch(`https://hexagon-h6fl.onrender.com/noOfFollowers/${id}`);
+        const res = await fetch(`http://localhost:3000/noOfFollowers/${id}`);
         const data = await res.json();
         console.log("Hello : " + data);
         setFollowers(data.length);
@@ -119,7 +144,7 @@ const Signup = () => {
 
   async function getComments() {
 
-    await fetch(`https://hexagon-h6fl.onrender.com/getNoComment/${id}`)
+    await fetch(`http://localhost:3000/getNoComment/${id}`)
     .then((res) => {
      if(res.ok) {
        console.log("Comments fetched...")
@@ -145,7 +170,7 @@ const Signup = () => {
       
      async function getLikes() {
  
-       await fetch(`https://hexagon-h6fl.onrender.com/likes/${id}`)
+       await fetch(`http://localhost:3000/likes/${id}`)
        .then((res) => res.json())
        .then((res) => {
           
@@ -171,6 +196,15 @@ const Signup = () => {
         <div className='qwerty1'>
           <div className='hea'>
             <FaConnectdevelop size={50} style={{position:'absolute', marginBottom:'40rem'}}/>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
            <div style={{position:'relative'}}>
            <Link to={`/allposts/${id}`}>
               {' '}
@@ -179,7 +213,7 @@ const Signup = () => {
               <br />
               <br />
             </Link>
-            <FaHeart size={40} />
+           <Link to={`/notification/${id}`} style={{color:'black'}}> <FaHeart size={40} /></Link>
             <br />
             <br />
             <br />
@@ -191,6 +225,18 @@ const Signup = () => {
             <br />
             <br />
             <FaUser size={40} />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <Link to={`/test/${id}`} style={{color:'black'}}><FaSignOutAlt size={30}/></Link>
            </div>
           </div>
           <div className='pura'>
@@ -202,7 +248,7 @@ const Signup = () => {
               )}
             </div>
 
-            <div className='proInfo'>
+            <div className='proInfo proInfo1'>
               <div className='userNam'>
                 {userName} &nbsp;&nbsp;&nbsp;&nbsp;
                 <button className='edit' onClick={() => navigate(`/editProfile/${id}`)}>
@@ -222,10 +268,11 @@ const Signup = () => {
             </div>
 
             <div className='moreUsers'>
+              <h3 style={{color:'white', textAlign:'center', fontFamily:'sans-serif'}}>Suggestions</h3>
               {five.map((friend, index) => (
                 <Link to={`/viewProfile/${friend._id}/${id}`} key={friend._id}>
                   <div className='user' onClick={() => handleProView(adhar)}>
-                    <img src={`https://hexagon-h6fl.onrender.com/profile-pic/${friend.profilePic}`} alt='images' className='fivePic' />
+                    <img src={`http://localhost:3000/profile-pic/${friend.profilePic}`} alt='images' className='fivePic' />
                     <p>
                       {friend.name} &nbsp; <button onClick={() => handleProView(adhar)}>View <FaUserFriends /></button>
                     </p>
@@ -238,24 +285,29 @@ const Signup = () => {
             <h1 className='mainPost'>
               <FaClipboardList /> POSTS
             </h1>
-            <div className='post1'>
-              <div className='post'>
+            <div className='post1 post2'>
+              <div className='post post3'>
                 {posty.length === 0 ? (
-                  <div className='noposts'>No posts yet</div>
+                  <div className='noposts'>...</div>
                 ) : (
                   posty.map((pic, index) => (
                     <div key={index}>
                       <img
-                        src={`https://hexagon-h6fl.onrender.com/profile-pic/${pic.post}`}
+                        src={`http://localhost:3000/profile-pic/${pic.post}`}
                         alt={`post-${index}`}
                         className='pot'
-                        onClick={() => handleOverlay(`https://hexagon-h6fl.onrender.com/profile-pic/${pic.post}`)}
+                        title='Click on the image to see the details...'
+                        onClick={() => {
+                          handleOverlay(`http://localhost:3000/profile-pic/${pic.post}`);
+                          setCaption(pic.caption);
+                          setCreatedAt(pic.createdAt);
+                        }}
                       />
                     </div>
                   ))
                 )}
               </div>
-              {/* Overlay */}
+             //overlay...
               <div className="overlay" id='overlay' onClick={handleLeave}>
                 <div className="text" id='text'>
                  <div className="imageWala">
@@ -263,10 +315,17 @@ const Signup = () => {
                
                  </div>
                  <p><span>{likeCount}</span>&nbsp;<FaThumbsUp size={30}/>&nbsp;&nbsp;&nbsp;&nbsp;<span>{commentCount.length}</span>&nbsp;<FaComment size={30}/></p>
+                <div className="timeK">
+                  <h6><span style={{fontSize:'20px', color:'rgb(50,50,50)'}}>Caption :</span>&nbsp;&nbsp; {caption}</h6>
+                </div>
+                <div className="createdAt">
+                <h6><span style={{fontSize:'20px', color:'rgb(50,50,50)'}}>CreatedAt :</span>&nbsp; {new Date(createdAt).toLocaleDateString('en-IN')}</h6>
+                </div>
                 </div>
               </div>
             </div>
           </div>
+
         </div>
       )}
     </div>

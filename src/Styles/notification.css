@@ -1,0 +1,180 @@
+* {
+    padding: 0;
+    margin:0;
+}
+.notification1 {
+    background-color: black;
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    flex-wrap: wrap;
+}
+.notification3 {
+    display: flex;
+    margin-top: 5rem;
+}
+.comments, .follows, .likes {
+ 
+  margin-left: 5rem;
+
+}
+.comments h2 {
+    background-color: blue;
+    padding: 1rem;
+    border-radius: 10px;
+}
+.follows h2 {
+    background-color: blue;
+    padding: 1rem;
+    border-radius: 10px;
+}
+.likes h2 {
+    background-color: blue;
+    padding: 1rem;
+    border-radius: 10px;
+    text-align: center;
+}
+.likes1 {
+    display: flex;
+    margin-top: 1.5rem;
+    align-items: center;
+}
+.likes1 img {
+    border-radius: 50%;
+    height: 90px;
+    border: 2px solid blue;
+}
+.likes {
+    padding: 4rem;
+}
+.bengaluru div img {
+    border: 2px solid blue;
+}
+.comments1 {
+    display: flex;
+    margin-top: 1.5rem;
+    align-items: center;
+    background-color: rgb(31, 31, 31);
+    padding: 1rem;
+    border-radius: 5px;
+}
+.comments1 img {
+    border-radius: 50%;
+    height: 90px;
+    border: 2px solid blue;
+}
+.spino {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    background-color: black;
+}
+.comments h2 {
+    text-align: center;
+}
+.follows h2 {
+    text-align: center;
+}
+@media screen and (max-width: 1464px) {
+    
+    .comments, .follows, .likes {
+        margin-left: 2rem;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        border-radius: 10px;
+    }
+    .likes {
+        margin-left: 3rem;
+    }
+    .notification3 {
+        margin-left: 3rem;
+    }
+    .comments h2 {
+        background-color: blue;
+        padding: 1rem;
+        border-radius: 10px;
+    }
+    .follows h2 {
+        background-color: blue;
+        padding: 1rem;
+        border-radius: 10px;
+    }
+    .likes h2 {
+        background-color: blue;
+        padding: 1rem;
+        border-radius: 10px;
+        text-align: center;
+    }
+
+}
+@media screen and (max-width: 1056px) {
+    
+   .notification3 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+   }
+   .comments, .follows, .likes {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 10px;
+}
+.comments h2 {
+    background-color: yellow;
+    padding: 1rem;
+    border-radius: 10px;
+}
+.follows h2 {
+    background-color: yellow;
+    padding: 1rem;
+    border-radius: 10px;
+}
+.likes h2 {
+    background-color: yellow;
+    padding: 1rem;
+    border-radius: 10px;
+}
+.comments h2 {
+    background-color: blue;
+    padding: 1rem;
+    border-radius: 10px;
+}
+.follows h2 {
+    background-color: blue;
+    padding: 1rem;
+    border-radius: 10px;
+}
+.likes h2 {
+    background-color: blue;
+    padding: 1rem;
+    border-radius: 10px;
+    text-align: center;
+}
+
+}
+@media screen and (min-width : 1460px) {
+
+    .likes {
+        margin-top: -62px;
+    }
+    .comments h2 {
+        background-color: blue;
+        padding: 1rem;
+        border-radius: 10px;
+    }
+    .follows h2 {
+        background-color: blue;
+        padding: 1rem;
+        border-radius: 10px;
+    }
+    .likes h2 {
+        background-color: blue;
+        padding: 1rem;
+        border-radius: 10px;
+        text-align: center;
+    }
+
+}

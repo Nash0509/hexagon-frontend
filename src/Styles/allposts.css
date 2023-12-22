@@ -22,7 +22,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #5e5858;
     margin-top: 1rem;
     padding: 1rem;
     border-radius: 5px;
@@ -45,6 +44,7 @@
     padding-top: 4rem;
     font-family: cursive;
     color: blue !important;
+    margin-left: 8rem;
 }
 
 .info {
@@ -161,5 +161,41 @@ color: #5e5858;
     margin-left: 0px;
 }
 .all {
-    margin-left: -930px;
+    margin-left: -1050px;
+}
+
+@media screen and (max-width: 1802px) {
+
+
+ .line {
+    display: flex;
+    flex-direction: column;
+    margin-left: -150px;
+ }
+ .all {
+    margin-left: 11rem;
+    margin-top: -60px;
+ }
+ .post {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 0.3rem;
+
+ }
+ .post-image {
+    margin-left: 10rem;
+ }
+
+ .niru {
+    margin-left: 1rem;
+ }
+   
+}
+@media screen and (max-width : 682px){
+
+    #inny {
+        width : 297px;
+    } 
+
 }

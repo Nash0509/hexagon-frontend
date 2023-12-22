@@ -1,6 +1,6 @@
 import React from 'react'
 import '../Styles/comeback.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {toast} from 'react-toastify'
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
@@ -11,6 +11,29 @@ const Comeback = () => {
    const [email, setEmail] = useState('');
    const [password, setPassword] = useState('');
    const navigate = useNavigate();
+   const [cmr, setCmr] = useState('');
+
+
+   useEffect(() => {
+
+    let c = false;
+        
+    console.log("This is the cookies : "+ document.cookie);
+    const a = document.cookie.split(';');
+    a.forEach((cookie) => {
+  
+      let b =  cookie.split('=');
+       if(b[1] == 'hexagon') {
+        c = true;
+       }
+  
+    })
+    if(c === true) {
+      toast.warning("You are already logged in, logout first...");
+     navigate(`/signup/${localStorage.getItem('logId')}`);
+    }
+  
+  }, [])
 
   async  function handleSignIn() {
      
@@ -25,10 +48,13 @@ const Comeback = () => {
     if(response.ok) {
         console.log(resBody._id);
         const response2 = await fetch(`https://hexagon-h6fl.onrender.com/find/${resBody._id}`);
+        setCmr(resBody._id);
         if(response2.ok) {
             const resBody2 = await response2.json();
             console.log(resBody2);
              navigate(`/signup/${resBody2._id}`);
+             document.cookie = `name=hexagon;expires=Thu, 01 Jan 2024 00:00:00 UTC;path=/`;
+             localStorage.setItem('logId',resBody2._id);
         }
         else {
           toast.warning("Please check your email or password and try again...")

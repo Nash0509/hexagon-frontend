@@ -53,7 +53,7 @@ async function handlePost() {
         formData.append('profilePic', p);
         formData.append('userData',  JSON.stringify(data));
 
-  const result =  await fetch(`https://hexagon-h6fl.onrender.com/updateUser/${id}`, {
+  const result =  await fetch(`http://localhost:3000/updateUser/${id}`, {
         method : 'PUT',
         body : formData
      });

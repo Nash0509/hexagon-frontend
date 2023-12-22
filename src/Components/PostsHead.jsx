@@ -1,4 +1,3 @@
-import { div } from '@tensorflow/tfjs'
 import React from 'react'
 
 const PostsHead = () => {

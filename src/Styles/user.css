@@ -10,11 +10,29 @@
     font-family: sans-serif;
 }
 
+.timeK {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+    margin-top: 1.5rem;
+    font-size: 30px;
+}
+
+.createdAt {
+
+   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+   font-size: 30px;
+   text-align: center;
+   margin-top: 1rem;
+
+}
+
 .pura1 {
     padding-top: 10rem;
     margin-right: 15rem;
 }
-
+.posts {
+    margin-top: 3rem;
+}
 
 .userNam {
     font-size: 1.5rem;
@@ -37,7 +55,7 @@
 }
 
 .hea {
-    position: fixed;
+    position:fixed;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -119,7 +137,7 @@
 .pot {
     width: 300px;
     height: 300px;
-    border: 1px solid black;
+    border: 1px solid blue;
 }
 
 .post {
@@ -133,6 +151,10 @@
     display: flex;
     justify-content: center;
     margin-top: 2rem;
+}
+
+.post2 {
+ margin-left: 26rem !important;
 }
 
 .post div {
@@ -236,12 +258,22 @@
     border-radius: 5px;
     font-size: 1rem;
   }
+  .qwerty1 {
+    padding-bottom: 20rem;
+  }
+  .ytrewq {
+    padding-bottom: 10rem;
+  }
+  .pura2 {
+    margin-left: 10rem;
+  }
   
   @media screen and (max-width : 1234px) {
     
      .pura {
         display: flex;
         flex-direction: column;
+        margin-left: 1px;
      }
      .proInfo {
         margin-top: -3rem;
@@ -255,17 +287,16 @@
      }
      .extra {
         margin-top: 30px;
-
      }
      .extra p span {
         padding: 5px;
         font-size: 15px;
      }
      .mainPost {
-        margin-left: 150px;
+        margin-left: 300px;
      }
      .post1 {
-        margin-left: 220px;
+        margin-left: 100px;
      }
 
      
@@ -277,5 +308,58 @@
         background-color: black;
       }
 
+
+  }
+  @media screen and (min-width : 1632px){
+    .post1 {
+      margin-left: 17rem;
+    }
+  }
+  @media screen and (min-width : 1635px){
+    .lock {
+     
+       margin-right: 15rem;
+
+    }
+  }
+  @media screen and (max-width : 1232px) {
+    .mainPost {
+        margin-right: 15rem;
+    }
+    .lock {
+        margin-right: 10rem;
+    }
+  }
+  @media screen and (max-width: 971px) {
+       
+    .extra1 p{
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+    }
+    .proInfo {
+        text-align: center;
+    }
+    
+
+  }
+
+  @media screen and (max-width : 1223px) {
+
+   .pura3 {
+
+    margin-left: 18rem;
+
+   }
+
+  }
+
+  @media screen and (max-width : 1799px) {
+
+    .post2 {
+
+      margin-right: 18rem;
+     
+    }
 
   }

@@ -13,30 +13,6 @@ const Login = () => {
    const [password, setPassword] = useState('');
    const [id, setId] = useState('');
    const navigate = useNavigate();
-  
-
-   useEffect(() => {
-
-    let c = false;
-        
-    console.log("This is the cookies : "+ document.cookie);
-    const a = document.cookie.split(';');
-    a.forEach((cookie) => {
-  
-      let b =  cookie.split('=');
-       if(b[1] == 'hexagon') {
-        c = true;
-       }
-  
-    })
-    if(c === true) {
-      toast.warning("You are already logged in");
-      window.history.back();
-      navigate(`/signup/${localStorage.getItem('logId')}`);
-
-    }
-  
-  }, [])
    
 
   async  function handleLogIn() {

@@ -24,7 +24,7 @@ toast.info("Please wait...")
     };
 
 
-    const already = await fetch(`http://localhost:3000/sign/${email}/${password}`);
+    const already = await fetch(`https://hexagon-backend.onrender.com/sign/${email}/${password}`);
     
     if(already.ok) {
 
@@ -35,7 +35,7 @@ toast.info("Please wait...")
     else {
          
       try {
-        const response =    await fetch('http://localhost:3000/login', {
+        const response =    await fetch('https://hexagon-backend.onrender.com/login', {
             method : 'POST',
             headers : {
                 'Content-Type' : 'application/json',

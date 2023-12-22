@@ -28,14 +28,14 @@ const ViewProfile = () => {
     setLoading(true);
 
     try {
-      fetch(`http://localhost:3000/display/${id}`)
+      fetch(`https://hexagon-backend.onrender.com/display/${id}`)
         .then((res) => res.json())
         .then((data) => {
           console.log(data);
           setName(data.name);
           setUserName(data.userName);
           setbio(data.dis);
-          setUrl(`http://localhost:3000/profile-pic/${data.profilePic}`);
+          setUrl(`https://hexagon-backend.onrender.com/profile-pic/${data.profilePic}`);
           setUid(data.uid);
           setLoading(false);
         });
@@ -47,7 +47,7 @@ const ViewProfile = () => {
 
   useEffect(() => {
     try {
-      fetch('http://localhost:3000/getFive')
+      fetch('https://hexagon-backend.onrender.com/getFive')
         .then((res) => res.json())
         .then((res) => {
           console.log(res);
@@ -60,7 +60,7 @@ const ViewProfile = () => {
   }, [id]);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/getPosts/${id}`)
+    fetch(`https://hexagon-backend.onrender.com/getPosts/${id}`)
       .then((response) => response.json())
       .then((res) => {
         console.log(res);
@@ -86,7 +86,7 @@ const ViewProfile = () => {
    
     if(follows === true) {
 
-      await fetch(`http://localhost:3000/unFollow/${back}/${id}`, {
+      await fetch(`https://hexagon-backend.onrender.com/unFollow/${back}/${id}`, {
         method : 'DELETE',
         headers : {
           'Content-Type' : 'application-json',
@@ -109,7 +109,7 @@ const ViewProfile = () => {
     if(follows === false) {
 
       try {
-        const response = await fetch(`http://localhost:3000/follow/${back}/${id}`, {
+        const response = await fetch(`https://hexagon-backend.onrender.com/follow/${back}/${id}`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -137,7 +137,7 @@ const ViewProfile = () => {
 
       async function doesFollow() {
 
-      const result = await fetch(`http://localhost:3000/follower/${back}/${id}`)
+      const result = await fetch(`https://hexagon-backend.onrender.com/follower/${back}/${id}`)
       if(result.status === 200) {
         console.log("Follows");
         setFollows(true);
@@ -155,7 +155,7 @@ const ViewProfile = () => {
      
     async function following() {
 
-        await fetch(`http://localhost:3000/following/${id}`)
+        await fetch(`https://hexagon-backend.onrender.com/following/${id}`)
         .then((res) => res.json())
         .then((res) => {
           setFollowing(res.length);
@@ -168,7 +168,7 @@ const ViewProfile = () => {
 
     async function followers() {
 
-     await fetch(`http://localhost:3000/noOfFollowers/${id}`)
+     await fetch(`https://hexagon-backend.onrender.com/noOfFollowers/${id}`)
      .then((res) => res.json())
      .then((res) => {
       console.log("Hello : "+ res);
@@ -258,7 +258,7 @@ const ViewProfile = () => {
                 ) : (
                   posty.map((pic, index) => (
                     <div key={index}>
-                      <img src={`http://localhost:3000/profile-pic/${pic.post}`} alt={`post-${index}`} className='pot' />
+                      <img src={`https://hexagon-backend.onrender.com/profile-pic/${pic.post}`} alt={`post-${index}`} className='pot' />
                     </div>
                   ))
                 )}

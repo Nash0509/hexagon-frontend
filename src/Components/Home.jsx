@@ -37,11 +37,11 @@ const Home = () => {
     formData.append('profilePic', profilePic);
     formData.append('userData', JSON.stringify(data));
 
-    const check = await fetch(`http://localhost:3000/userName/${userName}`);
+    const check = await fetch(`https://hexagon-backend.onrender.com/userName/${userName}`);
 
     if (check.ok) {
       try {
-        const response = await fetch('http://localhost:3000/enter', {
+        const response = await fetch('https://hexagon-backend.onrender.com/enter', {
           method: 'POST',
           body: formData,
         });

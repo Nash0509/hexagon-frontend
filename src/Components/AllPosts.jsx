@@ -25,7 +25,7 @@ const AllPosts = () => {
 
       setLoading(true);
       try {
-        const response = await fetch('http://localhost:3000/allposts');
+        const response = await fetch('https://hexagon-backend.onrender.com/allposts');
         const data = await response.json();
         console.log(data);
         setPosts(data);
@@ -35,12 +35,12 @@ const AllPosts = () => {
           const uid = post.uid;
 
           try {
-            const res = await fetch(`http://localhost:3000/display/${uid}`);
+            const res = await fetch(`https://hexagon-backend.onrender.com/display/${uid}`);
             const userData = await res.json();
 
             return {
               userName: userData.userName,
-              url: `http://localhost:3000/profile-pic/${userData.profilePic}`,
+              url: `https://hexagon-backend.onrender.com/profile-pic/${userData.profilePic}`,
               uid : userData.uid,
             };
           } catch (err) {
@@ -81,7 +81,7 @@ const a = document.getElementById(index);
 a.style.color = 'green';
 document.getElementById(`${index}${index}`).style.color = '#5e5858';
 
-await fetch(`http://localhost:3000/like/${id}/${uid}`, {
+await fetch(`https://hexagon-backend.onrender.com/like/${id}/${uid}`, {
   method: 'POST',
   headers : {
     'Content-Type': 'application/json',
@@ -100,7 +100,7 @@ await fetch(`http://localhost:3000/like/${id}/${uid}`, {
 
   async function handleDislike(uid, index) {
 
-     await fetch(`http://localhost:3000/unLike/${id}/${uid}`, {
+     await fetch(`https://hexagon-backend.onrender.com/unLike/${id}/${uid}`, {
       method : 'DELETE',
       headers : {
         'Content-Type': 'application/json',
@@ -123,7 +123,7 @@ await fetch(`http://localhost:3000/like/${id}/${uid}`, {
 
   async function handleComment(uid, index, key) {
     try {
-      await fetch(`http://localhost:3000/comment/${id}/${uid}/${comment}/${key}`, {
+      await fetch(`https://hexagon-backend.onrender.com/comment/${id}/${uid}/${comment}/${key}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -156,7 +156,7 @@ await fetch(`http://localhost:3000/like/${id}/${uid}`, {
 
   async function getComments(uid, key) {
 
-     await fetch(`http://localhost:3000/comment/${id}/${uid}/${key}`)
+     await fetch(`https://hexagon-backend.onrender.com/comment/${id}/${uid}/${key}`)
      .then((res) => {
       return res.json();
      })
@@ -207,7 +207,7 @@ await fetch(`http://localhost:3000/like/${id}/${uid}`, {
             <div className='line' key={index}>
               <div className='post'>
                 <img
-                  src={`http://localhost:3000/profile-pic/${post.post}`}
+                  src={`https://hexagon-backend.onrender.com/profile-pic/${post.post}`}
                   alt='postPic'
                   className='post-image'
                 />

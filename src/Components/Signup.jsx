@@ -52,14 +52,14 @@ const Signup = () => {
     console.log("Angela white : "+ localStorage.getItem('logId'));
 
     try {
-      fetch(`http://localhost:3000/display/${id}`)
+      fetch(`https://hexagon-backend.onrender.com/display/${id}`)
         .then((res) => res.json())
         .then((data) => {
           console.log(data);
           setName(data.name);
           setUserName(data.userName);
           setbio(data.dis);
-          setUrl(`http://localhost:3000/profile-pic/${data.profilePic}`);
+          setUrl(`https://hexagon-backend.onrender.com/profile-pic/${data.profilePic}`);
           setUid(data.uid);
           setLoading(false);
         });
@@ -71,7 +71,7 @@ const Signup = () => {
 
   useEffect(() => {
     try {
-      fetch(`http://localhost:3000/getFive/${id}`)
+      fetch(`https://hexagon-backend.onrender.com/getFive/${id}`)
         .then((res) => res.json())
         .then((res) => {
           console.log(res);
@@ -84,7 +84,7 @@ const Signup = () => {
   }, [id]);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/getPosts/${id}`)
+    fetch(`https://hexagon-backend.onrender.com/getPosts/${id}`)
       .then((response) => response.json())
       .then((res) => {
         console.log(res);
@@ -105,7 +105,7 @@ const Signup = () => {
   useEffect(() => {
     async function fetchFollowing() {
       try {
-        const res = await fetch(`http://localhost:3000/following/${id}`);
+        const res = await fetch(`https://hexagon-backend.onrender.com/following/${id}`);
         const data = await res.json();
         setFollowing(data.length);
         console.log(data.length + " == " + data);
@@ -116,7 +116,7 @@ const Signup = () => {
 
     async function fetchFollowers() {
       try {
-        const res = await fetch(`http://localhost:3000/noOfFollowers/${id}`);
+        const res = await fetch(`https://hexagon-backend.onrender.com/noOfFollowers/${id}`);
         const data = await res.json();
         console.log("Hello : " + data);
         setFollowers(data.length);
@@ -144,7 +144,7 @@ const Signup = () => {
 
   async function getComments() {
 
-    await fetch(`http://localhost:3000/getNoComment/${id}`)
+    await fetch(`https://hexagon-backend.onrender.com/getNoComment/${id}`)
     .then((res) => {
      if(res.ok) {
        console.log("Comments fetched...")
@@ -170,7 +170,7 @@ const Signup = () => {
       
      async function getLikes() {
  
-       await fetch(`http://localhost:3000/likes/${id}`)
+       await fetch(`https://hexagon-backend.onrender.com/likes/${id}`)
        .then((res) => res.json())
        .then((res) => {
           
@@ -272,7 +272,7 @@ const Signup = () => {
               {five.map((friend, index) => (
                 <Link to={`/viewProfile/${friend._id}/${id}`} key={friend._id}>
                   <div className='user' onClick={() => handleProView(adhar)}>
-                    <img src={`http://localhost:3000/profile-pic/${friend.profilePic}`} alt='images' className='fivePic' />
+                    <img src={`https://hexagon-backend.onrender.com/profile-pic/${friend.profilePic}`} alt='images' className='fivePic' />
                     <p>
                       {friend.name} &nbsp; <button onClick={() => handleProView(adhar)}>View <FaUserFriends /></button>
                     </p>
@@ -293,12 +293,12 @@ const Signup = () => {
                   posty.map((pic, index) => (
                     <div key={index}>
                       <img
-                        src={`http://localhost:3000/profile-pic/${pic.post}`}
+                        src={`https://hexagon-backend.onrender.com/profile-pic/${pic.post}`}
                         alt={`post-${index}`}
                         className='pot'
                         title='Click on the image to see the details...'
                         onClick={() => {
-                          handleOverlay(`http://localhost:3000/profile-pic/${pic.post}`);
+                          handleOverlay(`https://hexagon-backend.onrender.com/profile-pic/${pic.post}`);
                           setCaption(pic.caption);
                           setCreatedAt(pic.createdAt);
                         }}

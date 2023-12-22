@@ -25,19 +25,19 @@ const Notifications = () => {
     async function getLikes() {
     if(id) {
 
-        await fetch(`http://localhost:3000/likes/${id}`)
+        await fetch(`https://hexagon-backend.onrender.com/likes/${id}`)
         .then((res) => res.json())
         .then((res) => {
           console.log("Got the likes: ", res);
           setLikes(res);
           res.forEach((like, index) => {
-            fetch(`http://localhost:3000/display/${like.myId}`)
+            fetch(`https://hexagon-backend.onrender.com/display/${like.myId}`)
               .then((res) => res.json())
               .then((userData) => {
                 let a = document.getElementById('lucknow');
                 let b = document.createElement('div');
                 b.className = 'likes1'
-                b.innerHTML = `<img src="http://localhost:3000/profile-pic/${userData.profilePic}" alt="Image" width="90"/>&nbsp; &nbsp; <h4>${userData.userName}</h4>&nbsp;&nbsp;Liked your post`;
+                b.innerHTML = `<img src="https://hexagon-backend.onrender.com/profile-pic/${userData.profilePic}" alt="Image" width="90"/>&nbsp; &nbsp; <h4>${userData.userName}</h4>&nbsp;&nbsp;Liked your post`;
                 b.style.backgroundColor = 'rgb(31,31,31)'
                 b.style.padding = '1rem';
                 b.style.borderRadius = '5px'
@@ -53,7 +53,7 @@ const Notifications = () => {
 
     async function getFollows() {
 
-  await fetch(`http://localhost:3000/noOfFollowers/${id}`)
+  await fetch(`https://hexagon-backend.onrender.com/noOfFollowers/${id}`)
   .then((res) => res.json())
   .then((res) => {
 
@@ -61,7 +61,7 @@ const Notifications = () => {
    
     res.forEach((follower) => {
 
-        fetch(`http://localhost:3000/display/${follower.userId}`)
+        fetch(`https://hexagon-backend.onrender.com/display/${follower.userId}`)
         .then((res) => res.json())
         .then((reso) => {
 
@@ -71,7 +71,7 @@ const Notifications = () => {
             let c = document.createElement('div');
             
             c.className = 'comments1'
-            c.innerHTML = `<img src="http://localhost:3000/profile-pic/${reso.profilePic}" alt="Image" width="90"/>&nbsp; &nbsp; <h4>${reso.userName}</h4>&nbsp;&nbsp; Followed you!🎉`;
+            c.innerHTML = `<img src="https://hexagon-backend.onrender.com/profile-pic/${reso.profilePic}" alt="Image" width="90"/>&nbsp; &nbsp; <h4>${reso.userName}</h4>&nbsp;&nbsp; Followed you!🎉`;
 
             b.appendChild(c);
 
@@ -87,13 +87,13 @@ const Notifications = () => {
 
     async function getComments() {
 
-       await fetch(`http://localhost:3000/getNoComment/${id}`)
+       await fetch(`https://hexagon-backend.onrender.com/getNoComment/${id}`)
        .then((res) => res.json())
        .then((res) => {
 
         res.map((comment) => {
 
-            fetch(`http://localhost:3000/display/${comment.userId}`)
+            fetch(`https://hexagon-backend.onrender.com/display/${comment.userId}`)
             .then((res) => res.json())
             .then((res) => {
 
@@ -102,7 +102,7 @@ const Notifications = () => {
             let c = document.createElement('div');
             
             c.className = 'comments1'
-            c.innerHTML = `<img src="http://localhost:3000/profile-pic/${res.profilePic}" alt="Image" width="90"/>&nbsp; &nbsp; <h4>${res.userName}</h4>&nbsp;&nbsp;Commented on your post`;
+            c.innerHTML = `<img src="https://hexagon-backend.onrender.com/profile-pic/${res.profilePic}" alt="Image" width="90"/>&nbsp; &nbsp; <h4>${res.userName}</h4>&nbsp;&nbsp;Commented on your post`;
 
             b.appendChild(c);
            

@@ -41,13 +41,13 @@ const Comeback = () => {
 
     try {
 
-      const response = await fetch(`https://hexagon-h6fl.onrender.com/sign/${email}/${password}`);
+      const response = await fetch(`https://hexagon-backend.onrender.com/sign/${email}/${password}`);
 
       const resBody = await response.json();
 
     if(response.ok) {
         console.log(resBody._id);
-        const response2 = await fetch(`https://hexagon-h6fl.onrender.com/find/${resBody._id}`);
+        const response2 = await fetch(`https://hexagon-backend.onrender.com/find/${resBody._id}`);
         setCmr(resBody._id);
         if(response2.ok) {
             const resBody2 = await response2.json();

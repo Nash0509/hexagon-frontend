@@ -50,7 +50,7 @@ async function handlePost() {
         formData.append('postPic', p);
         formData.append('userData',  JSON.stringify(data));
 
-  const result =  await fetch('http://localhost:3000/post', {
+  const result =  await fetch('https://hexagon-backend.onrender.com/post', {
         method : 'POST',
         body : formData
      });

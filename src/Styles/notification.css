@@ -11,6 +11,7 @@
     align-items: center;
     padding: 2rem;
     flex-wrap: wrap;
+    min-height: 100vh;
 }
 .notification3 {
     display: flex;
@@ -177,4 +178,30 @@
         text-align: center;
     }
 
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #fff;
+    padding: 1rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 80px;
+    justify-content: center;
+}
+
+.logo {
+    margin-bottom: 2rem;
+}
+
+.nav-link {
+    color: black;
+    margin: 1rem 0;
+    transition: color 0.3s;
+    color: #007bff;
 }

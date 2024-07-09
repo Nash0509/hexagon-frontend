@@ -1,6 +1,6 @@
 import React from 'react'
 import '../Styles/notification.css'
-import { FaConnectdevelop, FaHome, FaPlusCircle, FaUser } from 'react-icons/fa'
+import { FaConnectdevelop, FaHome, FaPlusCircle, FaSignOutAlt, FaUser } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
@@ -123,27 +123,25 @@ const Notifications = () => {
  
 
   return (
-   (spinner) ? <div className="spino"><SquareLoader size={100} color='blue' /> </div>:  <div className='notification1'>
-   <div className='hea'>
-       <FaConnectdevelop size={50} style={{position:'absolute', marginBottom:'40rem', color:'black'}}/>
-      <div style={{position:'relative'}}>
-      <Link to={`/allposts/${id}`}>
-         {' '}
-         <FaHome size={40} color='black' />
-       </Link>
-       <br />
-       <br />
-       <br />
-       <Link to={`/createpost/${id}`} style={{ color: 'black' }}>
-         {' '}
-         <FaPlusCircle size={40} />
-       </Link>
-       <br />
-       <br />
-       <br />
-       <Link to={`/signup/${id}`}> <FaUser size={40} style={{color:'black'}}/></Link>
-      </div>
-     </div>
+   (spinner) ? <div className="spino loader"><SquareLoader size={100} color='blue' /> </div>:  <div className='notification1'>
+ <nav className="sidebar">
+                <FaConnectdevelop size={50} className="logo" />
+                <Link to={`/allposts/${id}`} className="nav-link">
+                    <FaHome size={30} />
+                </Link>
+                <Link to={`/notification/${id}`} className="nav-link">
+                    <FaHeart size={30} color='blue'/>
+                </Link>
+                <Link to={`/createpost/${id}`} className="nav-link">
+                    <FaPlusCircle size={30} />
+                </Link>
+                <Link to={`/profile/${id}`} className="nav-link">
+                    <FaUser size={30} />
+                </Link>
+                <Link to={`/test/${id}`} className="nav-link">
+                    <FaSignOutAlt size={30} />
+                </Link>
+            </nav>
    
 
  <div className="notification2">

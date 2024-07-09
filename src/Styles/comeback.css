@@ -1,61 +1,87 @@
-.come {
+/* Styles/comeback.css */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f7f7f7;
+  }
+  
+  .come {
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    font-family: sans-serif;
-    background-color: black;
     height: 100vh;
-}
-
-.come div {
-    border: 1px solid black;
+    background-color: #f7f7f7;
+  }
+  
+  .comeback-container {
+    background: #fff;
     padding: 2rem;
-    border-radius: 5px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     text-align: center;
-}
-
-.come div input {
-    padding: 1rem;
-    margin-top: 1rem;
+    max-width: 400px;
+    width: 100%;
+  }
+  
+  .instagramLogo {
+    color: #007bff;
+  }
+  
+  h1 {
+    margin-bottom: 1rem;
+    color: #333;
+  }
+  
+  input {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
     border-radius: 5px;
-    font-size: 1.5rem;
-}
-
-.come div button {
-    padding: 1rem;
-    margin-top: 1rem;
+    font-size: 1rem;
+  }
+  
+  .input-error {
+    border-color: red;
+  }
+  
+  .error-message {
+    color: red;
+    font-size: 0.875rem;
+    margin-top: -10px;
+    margin-bottom: 10px;
+  }
+  
+  button {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    background-color: #007bff;
+    border: none;
     border-radius: 5px;
-    background-color: blue;
-    border: 0px;
-    color: white;
-}
-
-.logAgain {
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  h5 {
+    margin: 1rem 0;
+    color: #666;
+  }
+  
+  .lin a {
     text-decoration: none;
-    color: black;
-    margin-top: 1rem;
-}
-
-.cbsign {
-    color: white;
-    font-family: sans-serif;
-}
-
-.sign {
-    background-color: white;
-
-}
-
-.sign input {
-    text-align: center;
-}
-
-.sign input:hover {
-    background-color: rgb(205, 223, 217);
-    color: rgb(0, 0, 0);
-}
-
-.sign {
-    margin-top: 2rem;
-}
+    color: #007bff;
+    transition: color 0.3s ease;
+  }
+  
+  .lin a:hover {
+    color: #0056b3;
+  }
+  

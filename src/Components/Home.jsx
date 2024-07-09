@@ -1,12 +1,10 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import '../Styles/home.css';
-import { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { FaInstagram } from 'react-icons/fa';
 import { IoIosArrowForward } from 'react-icons/io';
-import defaultImage from '../Styles/unknown2.jpg'; 
+import defaultImage from '../Styles/unknown2.jpg';
 
 const Home = () => {
   const [userName, setUserName] = useState('');
@@ -19,28 +17,30 @@ const Home = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    console.log(id);
     setUid(id);
-  }, []);
+  }, [id]);
 
-  async function handleSubmit() {
-    console.log(profilePic);
+  const handleSubmit = async () => {
+    if (!userName || !name || !bio || !profilePic) {
+      toast.warning("All fields are required");
+      return;
+    }
 
     const data = {
-      userName: userName,
-      name: name,
-      bio: bio,
-      uid: uid,
+      userName,
+      name,
+      bio,
+      uid,
     };
 
     const formData = new FormData();
     formData.append('profilePic', profilePic);
     formData.append('userData', JSON.stringify(data));
 
-    const check = await fetch(`https://hexagon-backend.onrender.com/userName/${userName}`);
+    try {
+      const check = await fetch(`https://hexagon-backend.onrender.com/userName/${userName}`);
 
-    if (check.ok) {
-      try {
+      if (check.ok) {
         const response = await fetch('https://hexagon-backend.onrender.com/enter', {
           method: 'POST',
           body: formData,
@@ -48,26 +48,23 @@ const Home = () => {
 
         if (response.ok) {
           const resBody = await response.json();
-          console.log(resBody);
           navigate(`/signup/${resBody._id}`);
-          toast.success('Info submitted successfully!');
+          toast.success('Profile created successfully...');
         } else {
           toast.error('An error occurred, try again...');
         }
-      } catch (err) {
-        console.log('An error occurred...');
-        toast.error('An error occurred, try again...');
+      } else {
+        toast.warning('UserName already in use, try another...');
       }
-    } else {
-      toast.warning('UserName already in use, try another...');
+    } catch (err) {
+      toast.error('An error occurred, try again...');
     }
-  }
+  };
 
-  function handleFileChange(e) {
+  const handleFileChange = (e) => {
     const file = e.target.files[0];
     setProfilePic(file);
 
-    // Display the selected image
     const reader = new FileReader();
     reader.onloadend = () => {
       setDisplayImage(reader.result);
@@ -75,30 +72,46 @@ const Home = () => {
     if (file) {
       reader.readAsDataURL(file);
     }
-  }
+  };
 
   return (
-    <div className='Anfo0'>
-      <h1 className='setup'>Let's set up your account</h1>
-      <div className='Anfo1'>
-        <div>
-          <FaInstagram size={50} className='Anfo2' />
-        </div>
-        <div className='Anfo'>
-          <input type='text' placeholder='User Name' onChange={(e) => setUserName(e.target.value)} /><br />
-          <input type='text' placeholder='Name' onChange={(e) => setName(e.target.value)} /><br />
-          <input type='text' placeholder='Bio' onChange={(e) => setBio(e.target.value)} /><br />
-          <label htmlFor='profilePicInput' className='profile-pic-label'>
-            <img src={displayImage} alt='Selected' className='profile-pic' />
-            <FaInstagram size={20} style={{ marginLeft: '5px', cursor: 'pointer' }} />
+    <div className="home-container">
+      <h1 className="setup">Let's set up your account</h1>
+      <div className="form-container">
+        <FaInstagram size={50} className="instagramLogo" />
+        <div className="input-container">
+          <input
+            type="text"
+            placeholder="User Name"
+            onChange={(e) => setUserName(e.target.value)}
+            value={userName}
+          />
+          <input
+            type="text"
+            placeholder="Name"
+            onChange={(e) => setName(e.target.value)}
+            value={name}
+          />
+          <input
+            type="text"
+            placeholder="Bio"
+            onChange={(e) => setBio(e.target.value)}
+            value={bio}
+          />
+          <label htmlFor="profilePicInput" className="profile-pic-label">
+            <img src={displayImage} alt="Selected" className="profile-pic" />
+            <FaInstagram size={20} className="profile-pic-icon" />
           </label>
-          <input id='profilePicInput' type='file' onChange={handleFileChange} style={{ display: 'none' }} /><br />
-          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-            <button style={{ display: 'flex', alignItems: 'center' }} onClick={handleSubmit}>
-              Next
-              <IoIosArrowForward size={20} style={{ marginLeft: '5px' }} />
-            </button>
-          </div>
+          <input
+            id="profilePicInput"
+            type="file"
+            onChange={handleFileChange}
+            style={{ display: 'none' }}
+          />
+          <button className="next-button" onClick={handleSubmit}>
+            Next
+            <IoIosArrowForward size={20} className="arrow-icon" />
+          </button>
         </div>
       </div>
     </div>

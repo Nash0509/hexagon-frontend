@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { SquareLoader } from 'react-spinners';
 import '../Styles/allposts.css';
-import { FaPlusCircle, FaHome, FaHeart, FaEdit, FaUserFriends, FaUser, FaThumbsUp, FaThumbsDown, FaConnectdevelop } from 'react-icons/fa';
+import { FaPlusCircle, FaHome, FaHeart, FaEdit, FaUserFriends, FaUser, FaThumbsUp, FaThumbsDown, FaConnectdevelop, FaSignOutAlt } from 'react-icons/fa';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -188,18 +188,26 @@ await fetch(`https://hexagon-backend.onrender.com/like/${id}/${uid}`, {
   }, [uidComment]);
   
   
-  return ( (loading) ? (<SquareLoader size={100} color='blue' />) : (
+  return ( (loading) ? <div className='loader'><SquareLoader size={100} color='blue' /></div> : (
     <div className='allPostHome'>
-      <div className='hea'>
-        <FaConnectdevelop size={50} color='black' className='namaste'/><br />
-       <Link style={{color:'black'}} to={`/notification/${id}`}> <FaHeart size={40}/></Link><br /><br />
-       <Link to={`/createpost/${id}`}><FaPlusCircle size={40} color='black'/></Link>
-       <br /><br />
-        <Link to={`/signup/${id}`} style={{position:'relative'}}> 
-          {' '}
-          <FaUser size={40} color='black' />
-        </Link>
-      </div>
+       <nav className="sidebar">
+                <FaConnectdevelop size={50} className="logo" />
+                <Link to={`/allposts/${id}`} className='nav-link'>
+                    <FaHome size={30} color='#0000ff'/>
+                </Link>
+                <Link to={`/notification/${id}`} className='nav-link'>
+                    <FaHeart size={30}/>
+                </Link>
+                <Link to={`/createpost/${id}`} className='nav-link'>
+                    <FaPlusCircle size={30}/>
+                </Link>
+                <Link to={`/profile/${id}`} className='nav-link'>
+                    <FaUser size={30}/>
+                </Link>
+                <Link to={`/test/${id}`} className='nav-link'>
+                    <FaSignOutAlt size={30}/>
+                </Link>
+            </nav>
       <h1 className='niru'>Posts</h1>
       <div className='allposts-container'>
         {posts.map(function (post, index) {

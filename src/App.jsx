@@ -1,12 +1,12 @@
 import React from 'react'
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
 import Home from './Components/Home'
-import Signup from './Components/Signup'
-import Login from './Components/Login'
+import Profile from './Components/Profile'
+import Login from './Components/Signup'
 import Header from './Components/Header'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Comeback from './Components/Comeback'
+import Comeback from './Components/Login'
 import CreatePost from './Components/CreatePost'
 import AllPosts from './Components/AllPosts'
 import ViewProfile from './Components/ViewProfile'
@@ -20,11 +20,11 @@ const App = () => {
     <Router>
       <ToastContainer />
       <Routes>
-      <Route  path='/login' element={<Login />}/>
+      <Route  path='/signup' element={<Login />}/>
         <Route path='/home/:id' element={<Home />}/>
-        <Route path='/signup/:id' element={<Signup />}/>
-        <Route index element={<Navigate to="/login" />} />
-        <Route path='/comeback' element={<Comeback />}/>
+        <Route path='/profile/:id' element={<Profile />}/>
+        <Route index element={<Navigate to="/signup" />} />
+        <Route path='/login' element={<Comeback />}/>
         <Route path='/createpost/:id' element={<CreatePost />}/>
         <Route path='/allposts/:id'  element={<AllPosts />}/>
         <Route path='/viewProfile/:id/:back' element={<ViewProfile />}/>

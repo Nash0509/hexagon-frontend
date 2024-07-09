@@ -1,4 +1,4 @@
-/* Styles for the Test component */
+/* editprofile.css */
 .container {
     display: flex;
     height: 100vh;
@@ -31,13 +31,10 @@
     color: black;
     margin: 1rem 0;
     transition: color 0.3s;
-    color: #000;
 }
 
 .nav-link:hover {
-    
-    color: blue;
-
+    color: #007bff;
 }
 
 .content {
@@ -54,37 +51,67 @@ h2 {
     color: #333;
 }
 
-.button-group {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
+.form-container {
+    max-width: 500px;
+    margin: 0 auto;
 }
 
-button {
-    padding: 0.5rem 1.5rem;
+.form-container input {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.file-input-label {
+    display: block;
+    margin-bottom: 10px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.file-input-text {
+    margin-left: 5px;
+    font-size: 16px;
+    color: #555;
+}
+
+.image-preview {
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.image-preview img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+}
+
+.cross {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    padding: 4px;
+}
+
+.save-button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
     border: none;
-    border-radius: 5px;
-    font-size: 1rem;
+    border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s;
 }
 
-.btn-yes {
-    background-color: #28a745;
-    color: white;
-}
-
-.btn-yes:hover {
-    background-color: #218838;
-}
-
-.btn-no {
-    background-color: #dc3545;
-    color: white;
-}
-
-.btn-no:hover {
-    background-color: #c82333;
+.save-button:hover {
+    background-color: #0056b3;
 }
 
 @media (max-width: 768px) {

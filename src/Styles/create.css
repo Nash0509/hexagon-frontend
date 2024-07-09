@@ -67,3 +67,168 @@
     text-align: center;
 }
 
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #fff;
+    padding: 1rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 80px;
+}
+
+.logo {
+    margin-bottom: 2rem;
+}
+
+.nav-link {
+    color: black;
+    margin: 1rem 0;
+    transition: color 0.3s;
+}
+
+.nav-link:hover {
+    color: #007bff;
+}
+
+
+/* Styles for the CreatePost component */
+.create-post-container {
+    display: flex;
+    height: 100vh;
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+}
+
+.sidebar {
+    flex: 0 0 80px;
+    background-color: #333;
+    color: #fff;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-link {
+    color: #fff;
+    margin-top: 1rem;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.create-post-content {
+    flex: 1;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h2 {
+    margin-bottom: 2rem;
+    color: #333;
+}
+
+.post-form {
+    width: 100%;
+    max-width: 400px;
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+input[type='text'],
+input[type='file'],
+button {
+    width: 100%;
+    padding: 0.8rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.input-file {
+    display: none;
+}
+
+.icon-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.upload-icon,
+.cross-icon {
+    cursor: pointer;
+    color: #333;
+}
+
+.image-preview {
+    margin-bottom: 1rem;
+}
+
+.image-preview img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+@media (max-width: 768px) {
+    .create-post-container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        height: auto;
+        flex: none;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+
+    .create-post-content {
+        padding: 1rem;
+    }
+}
+
+.nav-link {
+    color: black;
+    margin: 1rem 0;
+    transition: color 0.3s;
+    color: #007bff;
+}
+
+.logo {
+    margin-bottom: 2rem;
+    color: black;
+}
+
+.nav-link {
+    color: black;
+    margin: 1rem 0;
+    transition: color 0.3s;
+    color: #007bff;
+}

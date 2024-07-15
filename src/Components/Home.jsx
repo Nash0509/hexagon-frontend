@@ -38,17 +38,17 @@ const Home = () => {
     formData.append('userData', JSON.stringify(data));
 
     try {
-      const check = await fetch(`https://hexagon-backend.onrender.com/userName/${userName}`);
+      const check = await fetch(`http://localhost:8080/userName/${userName}`);
 
       if (check.ok) {
-        const response = await fetch('https://hexagon-backend.onrender.com/enter', {
+        const response = await fetch('http://localhost:8080/enter', {
           method: 'POST',
           body: formData,
         });
 
         if (response.ok) {
           const resBody = await response.json();
-          navigate(`/signup/${resBody._id}`);
+          navigate(`/Profile/${resBody._id}`);
           toast.success('Profile created successfully...');
         } else {
           toast.error('An error occurred, try again...');

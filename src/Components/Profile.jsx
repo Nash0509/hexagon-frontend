@@ -42,15 +42,20 @@ const Profile = () => {
     console.log("Angela white : " + localStorage.getItem("logId"));
 
     try {
-      fetch(`https://hexagon-backend.onrender.com/display/${id}`)
+      fetch(`http://localhost:8080/display/${id}`)
         .then((res) => res.json())
-        .then((data) => {
+        .then(async (data) => {
+          console.log(":::::::::::::::::::::::::::::");
           console.log(data);
+          console.log(data.key);
           setName(data.name);
           setUserName(data.userName);
           setbio(data.dis);
+          await fetch(data.key) 
+          .then(res => res.blob())
+          .then(res => console.log(res));
           setUrl(
-            `https://hexagon-backend.onrender.com/profile-pic/${data.profilePic}`
+            data.key
           );
           setUid(data.uid);
           setLoading(false);

@@ -39,8 +39,6 @@ const Profile = () => {
 
   useEffect(() => {
     setLoading(true);
-    console.log("Angela white : " + localStorage.getItem("logId"));
-
     try {
       fetch(`http://localhost:8080/display/${id}`)
         .then((res) => res.json())
@@ -51,12 +49,14 @@ const Profile = () => {
           setName(data.name);
           setUserName(data.userName);
           setbio(data.dis);
-          await fetch(data.key) 
-          .then(res => res.blob())
-          .then(res => console.log(res));
-          setUrl(
-            data.key
-          );
+          await fetch(`http://localhost:8080/profilePic/${data.key}`) 
+          .then(res => res.json())
+          .then(res => {
+            setUrl(
+              res.url
+            )
+            alert(res.url);
+          });
           setUid(data.uid);
           setLoading(false);
         });

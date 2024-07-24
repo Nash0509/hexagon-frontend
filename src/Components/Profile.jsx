@@ -36,6 +36,7 @@ const Profile = () => {
   const navigate = useNavigate();
   const [caption, setCaption] = useState("");
   const [createdAt, setCreatedAt] = useState("");
+  const [fivePic, setFivePic] = useState([]);
 
   useEffect(() => {
     setLoading(true);
@@ -43,9 +44,6 @@ const Profile = () => {
       fetch(`http://localhost:8080/display/${id}`)
         .then((res) => res.json())
         .then(async (data) => {
-          console.log(":::::::::::::::::::::::::::::");
-          console.log(data);
-          console.log(data.key);
           setName(data.name);
           setUserName(data.userName);
           setbio(data.dis);
@@ -55,7 +53,6 @@ const Profile = () => {
             setUrl(
               res.url
             )
-            alert(res.url);
           });
           setUid(data.uid);
           setLoading(false);
@@ -71,8 +68,16 @@ const Profile = () => {
       fetch(`https://hexagon-backend.onrender.com/getFive/${id}`)
         .then((res) => res.json())
         .then((res) => {
+          console.log(":::::::::::::::::::::::");
           console.log(res);
           setFive(res);
+          res.forEach(user => {
+            fetch(`http://localhost:8080/profilePic/${user.key}`)
+            .then(res => res.json())
+            .then(res => {
+                  setFivePic(prev => [...prev, res.url]);
+            })
+          })
         });
     } catch (err) {
       console.log("An error occurred: " + err.message);
@@ -240,21 +245,23 @@ const Profile = () => {
                   color: "white",
                   textAlign: "center",
                   fontFamily: "sans-serif",
+                  marginBottom: "1rem",
+                  marginTop : "0.5rem"
                 }}
               >
                 Suggestions
               </h3>
               {five.map((friend, index) => (
                 <Link to={`/viewProfile/${friend._id}/${id}`} key={friend._id}>
-                  <div className="user" onClick={() => handleProView(adhar)}>
+                  <div className="suggestions" onClick={() => handleProView(adhar)}>
                     <img
-                      src={`https://hexagon-backend.onrender.com/profile-pic/${friend.profilePic}`}
+                      src={fivePic[index]}
                       alt="images"
                       className="fivePic"
                     />
                     <p>
-                      {friend.name} &nbsp;{" "}
-                      <button onClick={() => handleProView(adhar)}>
+                      <span className="friendName">{friend.name} &nbsp;{" "}</span>
+                      <button onClick={() => handleProView(adhar)} className="myButton">
                         View <FaUserFriends />
                       </button>
                     </p>

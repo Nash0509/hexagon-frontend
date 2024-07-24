@@ -385,3 +385,32 @@
   transition: color 0.3s;
   color: #007bff;
 }
+
+.suggestions {
+
+    padding: 1.5rem;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    background-color: #007bff;
+    margin-bottom: 0.5rem;
+    border-radius: 10px;
+
+}
+
+.friendName {
+
+     text-decoration: none !important;
+     color: white;
+     text-align: center;
+     display: block;
+
+}
+
+.myButton {
+
+    background-color: #1a1818;
+    border-radius: 8px;
+
+}

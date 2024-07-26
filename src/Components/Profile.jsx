@@ -37,6 +37,8 @@ const Profile = () => {
   const [caption, setCaption] = useState("");
   const [createdAt, setCreatedAt] = useState("");
   const [fivePic, setFivePic] = useState([]);
+  const [postUrls, setPostUrls] = useState([]);
+  const [isFollowing, setIsFollowing] = useState(false);
 
   useEffect(() => {
     setLoading(true);
@@ -47,19 +49,41 @@ const Profile = () => {
           setName(data.name);
           setUserName(data.userName);
           setbio(data.dis);
-          await fetch(`http://localhost:8080/profilePic/${data.key}`) 
-          .then(res => res.json())
-          .then(res => {
-            setUrl(
-              res.url
-            )
-          });
+          await fetch(`http://localhost:8080/profilePic/${data.key}`)
+            .then((res) => res.json())
+            .then((res) => {
+              setUrl(res.url);
+            });
           setUid(data.uid);
           setLoading(false);
         });
     } catch (err) {
-      console.log("An error occurred: " + err.message);
       toast.error("An error occurred, try again...");
+    }
+  }, [id]);
+
+  useEffect(() => {
+    try {
+      fetch(
+        `http://localhost:8080/isFollowing/${localStorage.getItem(
+          "logId"
+        )}/${id}`
+      )
+        .then((res) => res.json())
+        .then((res) => {
+          if (res.status === true) {
+            setIsFollowing(true);
+          } else {
+            setIsFollowing(false);
+          }
+        })
+        .catch((err) =>
+          toast.error(
+            "There was a problem while fetching the following status..."
+          )
+        );
+    } catch (e) {
+      toast.error("There was a problem while fetching the following status...");
     }
   }, [id]);
 
@@ -68,19 +92,16 @@ const Profile = () => {
       fetch(`https://hexagon-backend.onrender.com/getFive/${id}`)
         .then((res) => res.json())
         .then((res) => {
-          console.log(":::::::::::::::::::::::");
-          console.log(res);
           setFive(res);
-          res.forEach(user => {
+          res.forEach((user) => {
             fetch(`http://localhost:8080/profilePic/${user.key}`)
-            .then(res => res.json())
-            .then(res => {
-                  setFivePic(prev => [...prev, res.url]);
-            })
-          })
+              .then((res) => res.json())
+              .then((res) => {
+                setFivePic((prev) => [...prev, res.url]);
+              });
+          });
         });
     } catch (err) {
-      console.log("An error occurred: " + err.message);
       toast.error("An error occurred, try again...");
     }
   }, [id]);
@@ -89,14 +110,24 @@ const Profile = () => {
     fetch(`https://hexagon-backend.onrender.com/getPosts/${id}`)
       .then((response) => response.json())
       .then((res) => {
-        console.log(res);
         setPosty(res);
+        res.forEach((post) => {
+          fetch(`http://localhost:8080/profilePic/${post.post}`)
+            .then((res) => res.json())
+            .then((res) => {
+              if(res.success) {
+                setPostUrls((prev) => [...prev, res.url]);
+              }
+              else {
+                toast.error("There was an error while fetching the profile pics of the users...");
+              }
+            });
+        });
       })
       .catch((err) => {
         toast.error(
           "There was an error fetching the posts, please refresh the page and try again..."
         );
-        console.log(err.message);
       });
   }, [id]);
 
@@ -112,9 +143,8 @@ const Profile = () => {
         );
         const data = await res.json();
         setFollowing(data.length);
-        console.log(data.length + " == " + data);
       } catch (err) {
-        console.log(err.message);
+        toast.error("There was a problem while following...");
       }
     }
 
@@ -124,11 +154,11 @@ const Profile = () => {
           `https://hexagon-backend.onrender.com/noOfFollowers/${id}`
         );
         const data = await res.json();
-        console.log("Hello : " + data);
         setFollowers(data.length);
-        console.log(data.length + " == " + data);
       } catch (err) {
-        console.log(err.message);
+        toast.error(
+          "There was a problem while fetching the no of the followers..."
+        );
       }
     }
 
@@ -149,18 +179,15 @@ const Profile = () => {
     async function getComments() {
       await fetch(`https://hexagon-backend.onrender.com/getNoComment/${id}`)
         .then((res) => {
-          if (res.ok) {
-            console.log("Comments fetched...");
-          }
           return res.json();
         })
         .then((res) => {
-          console.log(res + " Count " + res.length);
           setCommentCount(res);
-          console.log(" Mochi : " + res[0].comments);
         })
 
-        .catch((err) => console.log("Din't got!"));
+        .catch((err) =>
+          toast.error("There was an error while fetching the comments...")
+        );
     }
 
     getComments();
@@ -171,43 +198,104 @@ const Profile = () => {
       await fetch(`https://hexagon-backend.onrender.com/likes/${id}`)
         .then((res) => res.json())
         .then((res) => {
-          console.log("Like count fetched...");
           setLikeCount(res.length);
         })
         .catch((err) => {
-          console.log(
-            "An error occured while fetching the likes count : " + err.message
-          );
+          toast.error("There was an error while fetching the likes...");
         });
     }
     getLikes();
-    console.log(
-      "Measures here! : " + window.innerHeight + "Width : " + window.innerWidth
-    );
   }, []);
+
+  function handleBackProfile() {
+    if (id != localStorage.getItem("logId")) {
+      window.location.href = `/profile/${localStorage.getItem("logId")}`;
+    }
+  }
+
+  function handleFollow(username) {
+    fetch(
+      `http://localhost:8080/follow/${localStorage.getItem("logId")}/${id}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body : JSON.stringify({
+            username
+        })
+      }
+    )
+      .then((res) => res.json())
+      .then((res) => {
+        if (res.success) {
+          toast.success(`Following ${username}`);
+          setIsFollowing(true);
+        } else {
+          toast.error(
+            "There was a problem while following, please try again..."
+          );
+        }
+      })
+      .catch((err) => {
+        toast.error("There was a problem while following, please try again...");
+      });
+  }
+
+  function handleUnFollow(userName) {
+    fetch(
+      `http://localhost:8080/unFollow/${localStorage.getItem("logId")}/${id}/${userName}`,
+      {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    )
+      .then((res) => res.json())
+      .then((res) => {
+        if (res.success) {
+          toast.success(`Unfollowed ${userName}`);
+          setIsFollowing(false);
+        } else {
+          toast.error(
+            "There was a problem while unfollowing, please try again..."
+          );
+        }
+      })
+      .catch((err) => {
+        toast.error(
+          "There was a problem while unfollowing, please try again..."
+        );
+      });
+  }
 
   return (
     <div className="qwerty">
-      {loading === true ? <div className="loader"><SquareLoader size={100} color="blue"/></div>: (
+      {loading === true ? (
+        <div className="loader">
+          <SquareLoader size={100} color="blue" />
+        </div>
+      ) : (
         <div className="qwerty1">
-           <nav className="sidebar">
-                <FaConnectdevelop size={50} className="logo" />
-                <Link to={`/allposts/${id}`} className="nav-link">
-                    <FaHome size={30} />
-                </Link>
-                <Link to={`/notification/${id}`} className="nav-link">
-                    <FaHeart size={30} />
-                </Link>
-                <Link to={`/createpost/${id}`} className="nav-link">
-                    <FaPlusCircle size={30} />
-                </Link>
-                <Link to={`/profile/${id}`} className="nav-link">
-                    <FaUser size={30} color="blue"/>
-                </Link>
-                <Link to={`/test/${id}`} className="nav-link">
-                    <FaSignOutAlt size={30} />
-                </Link>
-            </nav>
+          <nav className="sidebar">
+            <FaConnectdevelop size={50} className="logo" />
+            <Link to={`/allposts/${localStorage.getItem('logId')}`} className="nav-link">
+              <FaHome size={30} />
+            </Link>
+            <Link to={`/notification/${id}`} className="nav-link">
+              <FaHeart size={30} />
+            </Link>
+            <Link to={`/createpost/${localStorage.getItem('logId')}`} className="nav-link">
+              <FaPlusCircle size={30} />
+            </Link>
+            <Link onClick={handleBackProfile} className="nav-link">
+              <FaUser size={30} color="blue" />
+            </Link>
+            <Link to={`/test/${localStorage.getItem('logId')}`} className="nav-link">
+              <FaSignOutAlt size={30} />
+            </Link>
+          </nav>
           <div className="pura">
             <div className="pic">
               {url ? (
@@ -219,13 +307,43 @@ const Profile = () => {
 
             <div className="proInfo proInfo1">
               <div className="userNam">
-                {userName} &nbsp;&nbsp;&nbsp;&nbsp;
-                <button
-                  className="edit"
-                  onClick={() => navigate(`/editProfile/${id}`)}
-                >
-                  <FaEdit /> Edit
-                </button>{" "}
+                <div style={{ display: "flex", alignItems: "center" }}>
+                  {userName} &nbsp;&nbsp;&nbsp;&nbsp;
+                  {localStorage.getItem("logId") != id && (
+                    <div>
+                      {!isFollowing && (
+                        <span>
+                          <button
+                            className="edit"
+                            onClick={() => handleFollow(userName)}
+                          >
+                            Follow
+                          </button>
+                        </span>
+                      )}
+                      {isFollowing && (
+                        <span>
+                          <button
+                            className="edit"
+                            onClick={() => handleUnFollow(userName)}
+                          >
+                            Unfollow
+                          </button>
+                        </span>
+                      )}
+                    </div>
+                  )}
+                </div>
+                {id != localStorage.getItem("logId") ? (
+                  ""
+                ) : (
+                  <button
+                    className="edit"
+                    onClick={() => navigate(`/editProfile/${id}`)}
+                  >
+                    <FaEdit /> Edit
+                  </button>
+                )}
                 &nbsp;&nbsp;&nbsp;
               </div>
               <div className="extra">
@@ -246,22 +364,28 @@ const Profile = () => {
                   textAlign: "center",
                   fontFamily: "sans-serif",
                   marginBottom: "1rem",
-                  marginTop : "0.5rem"
+                  marginTop: "0.5rem",
                 }}
               >
                 Suggestions
               </h3>
               {five.map((friend, index) => (
-                <Link to={`/viewProfile/${friend._id}/${id}`} key={friend._id}>
-                  <div className="suggestions" onClick={() => handleProView(adhar)}>
+                <Link to={`/profile/${friend._id}`} key={friend._id}>
+                  <div
+                    className="suggestions"
+                    onClick={() => handleProView(adhar)}
+                  >
                     <img
                       src={fivePic[index]}
                       alt="images"
                       className="fivePic"
                     />
                     <p>
-                      <span className="friendName">{friend.name} &nbsp;{" "}</span>
-                      <button onClick={() => handleProView(adhar)} className="myButton">
+                      <span className="friendName">{friend.name} &nbsp; </span>
+                      <button
+                        onClick={() => handleProView(adhar)}
+                        className="myButton"
+                      >
                         View <FaUserFriends />
                       </button>
                     </p>
@@ -275,14 +399,14 @@ const Profile = () => {
               <FaClipboardList /> POSTS
             </h1>
             <div className="post1 post2">
-              <div className="post post3">
+              <div className="myPosts">
                 {posty.length === 0 ? (
                   <div className="noposts">...</div>
                 ) : (
                   posty.map((pic, index) => (
                     <div key={index}>
                       <img
-                        src={`https://hexagon-backend.onrender.com/profile-pic/${pic.post}`}
+                        src={postUrls[index]}
                         alt={`post-${index}`}
                         className="pot"
                         title="Click on the image to see the details..."

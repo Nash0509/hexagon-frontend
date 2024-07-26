@@ -1,207 +1,252 @@
 * {
-    padding: 0;
-    margin:0;
+  padding: 0;
+  margin: 0;
 }
 .notification1 {
-    background-color: black;
-    color: white;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 2rem;
-    flex-wrap: wrap;
-    min-height: 100vh;
+  background-color: black;
+  color: white;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  flex-wrap: wrap;
+  min-height: 100vh;
 }
 .notification3 {
-    display: flex;
-    margin-top: 5rem;
+  display: flex;
+  margin-top: 5rem;
 }
-.comments, .follows, .likes {
- 
+.comments,
+.follows,
+.likes {
   margin-left: 5rem;
-
 }
 .comments h2 {
-    background-color: blue;
-    padding: 1rem;
-    border-radius: 10px;
+  background-color: blue;
+  padding: 1rem;
+  border-radius: 10px;
 }
 .follows h2 {
-    background-color: blue;
-    padding: 1rem;
-    border-radius: 10px;
+  background-color: blue;
+  padding: 1rem;
+  border-radius: 10px;
 }
 .likes h2 {
-    background-color: blue;
-    padding: 1rem;
-    border-radius: 10px;
-    text-align: center;
+  background-color: blue;
+  padding: 1rem;
+  border-radius: 10px;
+  text-align: center;
 }
 .likes1 {
-    display: flex;
-    margin-top: 1.5rem;
-    align-items: center;
+  display: flex;
+  margin-top: 1.5rem;
+  align-items: center;
 }
 .likes1 img {
-    border-radius: 50%;
-    height: 90px;
-    border: 2px solid blue;
+  border-radius: 50%;
+  height: 90px;
+  border: 2px solid blue;
 }
 .likes {
-    padding: 4rem;
+  padding: 4rem;
 }
 .bengaluru div img {
-    border: 2px solid blue;
+  border: 2px solid blue;
 }
 .comments1 {
-    display: flex;
-    margin-top: 1.5rem;
-    align-items: center;
-    background-color: rgb(31, 31, 31);
-    padding: 1rem;
-    border-radius: 5px;
+  display: flex;
+  margin-top: 1.5rem;
+  align-items: center;
+  background-color: rgb(31, 31, 31);
+  padding: 1rem;
+  border-radius: 5px;
 }
 .comments1 img {
-    border-radius: 50%;
-    height: 90px;
-    border: 2px solid blue;
+  border-radius: 50%;
+  height: 90px;
+  border: 2px solid blue;
 }
 .spino {
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    background-color: black;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  background-color: black;
 }
 .comments h2 {
-    text-align: center;
+  text-align: center;
 }
 .follows h2 {
-    text-align: center;
+  text-align: center;
 }
 @media screen and (max-width: 1464px) {
-    
-    .comments, .follows, .likes {
-        margin-left: 2rem;
-        padding: 1rem;
-        margin-bottom: 1rem;
-        border-radius: 10px;
-    }
-    .likes {
-        margin-left: 3rem;
-    }
-    .notification3 {
-        margin-left: 3rem;
-    }
-    .comments h2 {
-        background-color: blue;
-        padding: 1rem;
-        border-radius: 10px;
-    }
-    .follows h2 {
-        background-color: blue;
-        padding: 1rem;
-        border-radius: 10px;
-    }
-    .likes h2 {
-        background-color: blue;
-        padding: 1rem;
-        border-radius: 10px;
-        text-align: center;
-    }
-
-}
-@media screen and (max-width: 1056px) {
-    
-   .notification3 {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-   }
-   .comments, .follows, .likes {
+  .comments,
+  .follows,
+  .likes {
+    margin-left: 2rem;
     padding: 1rem;
     margin-bottom: 1rem;
     border-radius: 10px;
-}
-.comments h2 {
-    background-color: yellow;
-    padding: 1rem;
-    border-radius: 10px;
-}
-.follows h2 {
-    background-color: yellow;
-    padding: 1rem;
-    border-radius: 10px;
-}
-.likes h2 {
-    background-color: yellow;
-    padding: 1rem;
-    border-radius: 10px;
-}
-.comments h2 {
+  }
+  .likes {
+    margin-left: 3rem;
+  }
+  .notification3 {
+    margin-left: 3rem;
+  }
+  .comments h2 {
     background-color: blue;
     padding: 1rem;
     border-radius: 10px;
-}
-.follows h2 {
+  }
+  .follows h2 {
     background-color: blue;
     padding: 1rem;
     border-radius: 10px;
-}
-.likes h2 {
+  }
+  .likes h2 {
     background-color: blue;
     padding: 1rem;
     border-radius: 10px;
     text-align: center;
+  }
 }
-
-}
-@media screen and (min-width : 1460px) {
-
-    .likes {
-        margin-top: -62px;
-    }
-    .comments h2 {
-        background-color: blue;
-        padding: 1rem;
-        border-radius: 10px;
-    }
-    .follows h2 {
-        background-color: blue;
-        padding: 1rem;
-        border-radius: 10px;
-    }
-    .likes h2 {
-        background-color: blue;
-        padding: 1rem;
-        border-radius: 10px;
-        text-align: center;
-    }
-
-}
-
-.sidebar {
+@media screen and (max-width: 1056px) {
+  .notification3 {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: #fff;
+  }
+  .comments,
+  .follows,
+  .likes {
     padding: 1rem;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 80px;
-    justify-content: center;
+    margin-bottom: 1rem;
+    border-radius: 10px;
+  }
+  .comments h2 {
+    background-color: yellow;
+    padding: 1rem;
+    border-radius: 10px;
+  }
+  .follows h2 {
+    background-color: yellow;
+    padding: 1rem;
+    border-radius: 10px;
+  }
+  .likes h2 {
+    background-color: yellow;
+    padding: 1rem;
+    border-radius: 10px;
+  }
+  .comments h2 {
+    background-color: blue;
+    padding: 1rem;
+    border-radius: 10px;
+  }
+  .follows h2 {
+    background-color: blue;
+    padding: 1rem;
+    border-radius: 10px;
+  }
+  .likes h2 {
+    background-color: blue;
+    padding: 1rem;
+    border-radius: 10px;
+    text-align: center;
+  }
+}
+@media screen and (min-width: 1460px) {
+  .likes {
+    margin-top: -62px;
+  }
+  .comments h2 {
+    background-color: blue;
+    padding: 1rem;
+    border-radius: 10px;
+  }
+  .follows h2 {
+    background-color: blue;
+    padding: 1rem;
+    border-radius: 10px;
+  }
+  .likes h2 {
+    background-color: blue;
+    padding: 1rem;
+    border-radius: 10px;
+    text-align: center;
+  }
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #fff;
+  padding: 1rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 80px;
+  justify-content: center;
 }
 
 .logo {
-    margin-bottom: 2rem;
+  margin-bottom: 2rem;
 }
 
 .nav-link {
-    color: black;
-    margin: 1rem 0;
-    transition: color 0.3s;
-    color: #007bff;
+  color: black;
+  margin: 1rem 0;
+  transition: color 0.3s;
+  color: #007bff;
+}
+
+.notification {
+  display: flex;
+  background-color: #33373b;
+  border-radius: 10px;
+  margin-top: 1rem;
+  gap: 1rem;
+  align-items: center;
+  padding: 1rem;
+  position: relative;
+}
+
+.notification:hover {
+  background-color: #107ff6;
+}
+
+.noti-pro {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.notifications {
+  margin-top: 3rem;
+}
+
+.notification-message {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.notification-message:hover {
+  cursor: pointer;
+}
+
+.remove-noti {
+  position: absolute;
+  top: 0.7rem;
+  right: 0.7rem;
+}
+
+.remove-noti:hover {
+  color: #e0d1d1;
+}
+
+.goto-user:hover {
+  cursor: pointer;
 }

@@ -40,17 +40,18 @@ const CreatePost = () => {
 
   async function handlePost() {
     try {
-      if (!caption.trim()) {
-        toast.warning("Please provide a caption.");
+      if (!caption || !file) {
+        toast.warning("Please enter all the fields...");
         return;
       }
+
 
       const formData = new FormData();
       formData.append("postPic", file);
       formData.append("userData", JSON.stringify({ caption, uid: id }));
 
       const response = await fetch(
-        "https://hexagon-backend.onrender.com/post",
+        "http://localhost:8080/post",
         {
           method: "POST",
           body: formData,
@@ -61,7 +62,7 @@ const CreatePost = () => {
         toast.success("Posted successfully!");
         navigate(`/profile/${id}`);
       } else {
-        toast.error("Please enter all the fields...");
+        toast.error("There was a problem wiile posting...");
       }
     } catch (error) {
       console.error("Error creating post:", error);
@@ -118,6 +119,7 @@ const CreatePost = () => {
             onChange={handlePicture}
             style={{ display: "none" }}
             ref={fileInputRef}
+            accept="image/*"
           />
           <div className="icon-group">
             <FaImage size={30} className="upload-icon" onClick={handleIcon} />

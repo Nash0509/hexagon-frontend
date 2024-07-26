@@ -44,7 +44,7 @@
 }
 
 .proInfo {
-    font-size: 8px;
+    font-size: 6px;
     margin-top: 8rem;
     padding: 3rem;
     margin-left: 3rem;
@@ -135,8 +135,8 @@
 }
 
 .pot {
-    width: 300px;
-    height: 300px;
+    width: 200px;
+    height: 200px;
     border: 1px solid blue;
 }
 
@@ -412,5 +412,26 @@
 
     background-color: #1a1818;
     border-radius: 8px;
+
+}
+
+.myPosts {
+
+  display: grid;
+  grid-template-columns: auto auto auto;
+  place-items: center;
+  gap: 1rem;
+
+}
+
+@media screen and (max-width : 1100px) {
+
+  .myPosts {
+
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  
+  }
 
 }

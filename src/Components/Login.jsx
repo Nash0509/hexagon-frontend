@@ -38,14 +38,14 @@ const Comeback = () => {
     try {
       setLoading(true);
       const response = await fetch(
-        `https://hexagon-backend.onrender.com/sign/${email}/${password}`
+        `http://localhost:8080/sign/${email}/${password}`
       );
 
       const resBody = await response.json();
 
       if (response.ok) {
         const response2 = await fetch(
-          `https://hexagon-backend.onrender.com/find/${resBody._id}`
+          `http://localhost:8080/find/${resBody._id}`
         );
         setEmailError("");
         setPasswordError("");

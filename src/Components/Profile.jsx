@@ -18,6 +18,14 @@ import {
 } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { SquareLoader } from "react-spinners";
+import Button from "@mui/material/Button";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { useTheme } from "@mui/material/styles";
 
 const Profile = () => {
   const [userName, setUserName] = useState("");
@@ -39,6 +47,23 @@ const Profile = () => {
   const [fivePic, setFivePic] = useState([]);
   const [postUrls, setPostUrls] = useState([]);
   const [isFollowing, setIsFollowing] = useState(false);
+  //mat-dialog
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [open, setOpen] = React.useState(false);
+  const theme = useTheme();
+  const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
+  const [showLikes, setShowLikes] = useState(false);
+  const [showComments, setShoeCommments] = useState(false);
+
+  const handleClickOpen = (url) => {
+    setSelectedImage(url);
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+    setSelectedImage(null);
+  };
 
   useEffect(() => {
     setLoading(true);
@@ -89,7 +114,7 @@ const Profile = () => {
 
   useEffect(() => {
     try {
-      fetch(`https://hexagon-backend.onrender.com/getFive/${id}`)
+      fetch(`http://localhost:8080/getFive/${id}`)
         .then((res) => res.json())
         .then((res) => {
           setFive(res);
@@ -107,7 +132,7 @@ const Profile = () => {
   }, [id]);
 
   useEffect(() => {
-    fetch(`https://hexagon-backend.onrender.com/getPosts/${id}`)
+    fetch(`http://localhost:8080/getPosts/${id}`)
       .then((response) => response.json())
       .then((res) => {
         setPosty(res);
@@ -115,11 +140,12 @@ const Profile = () => {
           fetch(`http://localhost:8080/profilePic/${post.post}`)
             .then((res) => res.json())
             .then((res) => {
-              if(res.success) {
+              if (res.success) {
                 setPostUrls((prev) => [...prev, res.url]);
-              }
-              else {
-                toast.error("There was an error while fetching the profile pics of the users...");
+              } else {
+                toast.error(
+                  "There was an error while fetching the profile pics of the users..."
+                );
               }
             });
         });
@@ -221,9 +247,9 @@ const Profile = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body : JSON.stringify({
-            username
-        })
+        body: JSON.stringify({
+          username,
+        }),
       }
     )
       .then((res) => res.json())
@@ -244,7 +270,9 @@ const Profile = () => {
 
   function handleUnFollow(userName) {
     fetch(
-      `http://localhost:8080/unFollow/${localStorage.getItem("logId")}/${id}/${userName}`,
+      `http://localhost:8080/unFollow/${localStorage.getItem(
+        "logId"
+      )}/${id}/${userName}`,
       {
         method: "DELETE",
         headers: {
@@ -270,6 +298,16 @@ const Profile = () => {
       });
   }
 
+  function handleShowComments() {
+    setShowLikes(false);
+      setShoeCommments(true);
+  }
+
+  function handleShowLikes() {
+    setShoeCommments(false);
+      setShowLikes(true);
+  }
+
   return (
     <div className="qwerty">
       {loading === true ? (
@@ -280,19 +318,28 @@ const Profile = () => {
         <div className="qwerty1">
           <nav className="sidebar">
             <FaConnectdevelop size={50} className="logo" />
-            <Link to={`/allposts/${localStorage.getItem('logId')}`} className="nav-link">
+            <Link
+              to={`/allposts/${localStorage.getItem("logId")}`}
+              className="nav-link"
+            >
               <FaHome size={30} />
             </Link>
             <Link to={`/notification/${id}`} className="nav-link">
               <FaHeart size={30} />
             </Link>
-            <Link to={`/createpost/${localStorage.getItem('logId')}`} className="nav-link">
+            <Link
+              to={`/createpost/${localStorage.getItem("logId")}`}
+              className="nav-link"
+            >
               <FaPlusCircle size={30} />
             </Link>
             <Link onClick={handleBackProfile} className="nav-link">
               <FaUser size={30} color="blue" />
             </Link>
-            <Link to={`/test/${localStorage.getItem('logId')}`} className="nav-link">
+            <Link
+              to={`/test/${localStorage.getItem("logId")}`}
+              className="nav-link"
+            >
               <FaSignOutAlt size={30} />
             </Link>
           </nav>
@@ -398,67 +445,92 @@ const Profile = () => {
             <h1 className="mainPost">
               <FaClipboardList /> POSTS
             </h1>
-            <div className="post1 post2">
-              <div className="myPosts">
-                {posty.length === 0 ? (
-                  <div className="noposts">...</div>
-                ) : (
-                  posty.map((pic, index) => (
-                    <div key={index}>
-                      <img
-                        src={postUrls[index]}
-                        alt={`post-${index}`}
-                        className="pot"
-                        title="Click on the image to see the details..."
-                        onClick={() => {
-                          handleOverlay(
-                            `https://hexagon-backend.onrender.com/profile-pic/${pic.post}`
-                          );
-                          setCaption(pic.caption);
-                          setCreatedAt(pic.createdAt);
-                        }}
-                      />
-                    </div>
-                  ))
-                )}
-              </div>
-              //overlay...
-              <div className="overlay" id="overlay" onClick={handleLeave}>
-                <div className="text" id="text">
-                  <div className="imageWala">
-                    <img
-                      id="enlarged-image"
-                      alt="enlarged"
-                      className="overlayImage"
-                    />
-                  </div>
-                  <p>
-                    <span>{likeCount}</span>&nbsp;
-                    <FaThumbsUp size={30} />
-                    &nbsp;&nbsp;&nbsp;&nbsp;<span>{commentCount.length}</span>
-                    &nbsp;
-                    <FaComment size={30} />
-                  </p>
-                  <div className="timeK">
-                    <h6>
-                      <span
-                        style={{ fontSize: "20px", color: "rgb(50,50,50)" }}
-                      >
-                        Caption :
-                      </span>
-                      &nbsp;&nbsp; {caption}
-                    </h6>
-                  </div>
-                  <div className="createdAt">
-                    <h6>
-                      <span
-                        style={{ fontSize: "20px", color: "rgb(50,50,50)" }}
-                      >
-                        CreatedAt :
-                      </span>
-                      &nbsp; {new Date(createdAt).toLocaleDateString("en-IN")}
-                    </h6>
-                  </div>
+            <div>
+              <div style={{ display: "flex", justifyContent: "center" }}>
+                <div className="myPosts">
+                  {posty.length === 0 ? (
+                    <div className="noposts">...</div>
+                  ) : (
+                    posty.map((pic, index) => (
+                      <div key={index} className="mypost-pic">
+                        <img
+                          src={postUrls[index]}
+                          alt={`post-${index}`}
+                          className="pot"
+                        />
+
+                        <div className="post-hover" onClick={() => handleClickOpen(postUrls[index])}>
+                          <span>
+                            {" "}
+                            <FaComment size={20} color="white" />
+                            {"  "}102
+                          </span>
+                          <span>
+                            <FaHeart size={20} color="white" />
+                            {"  "}99
+                          </span>
+                        </div>
+                        <div>
+                          <Dialog
+                            fullScreen={fullScreen}
+                            open={open}
+                            onClose={handleClose}
+                            aria-labelledby="responsive-dialog-title"
+                          >
+                            <DialogTitle id="responsive-dialog-title">
+                              {"POST"}
+                            </DialogTitle>
+                            <DialogContent>
+                              <img
+                                 src={selectedImage}
+                                alt="post-image"
+                                height="300px"
+                                width="300px"
+                                style={{borderRadius : '7px'}}
+                              />
+                              <div
+                                style={{
+                                  display: "flex",
+                                  justifyContent: "center",
+                                  alignItems: "center",
+                                  gap: "1rem",
+                                  marginTop : '1rem'
+                                }}
+                              >
+                                <div style={{
+                                  display: "flex",
+                                  justifyContent: "center",
+                                  alignItems: "center",
+                                  gap: "0.7rem",
+                                }}>
+                                  <FaHeart size={25} className="post-likes" onClick={handleShowLikes}/>
+                                  120
+                                </div>
+                                <div style={{
+                                  display: "flex",
+                                  justifyContent: "center",
+                                  alignItems: "center",
+                                  gap: "0.7rem",
+                                }}>
+                                  <FaComment size={25} className="post-comments" onClick={handleShowComments}/>
+                                  99
+                                </div>
+                              </div>
+                              <div>
+                                  {
+                                    showLikes && <div>This is the likes section!</div>
+                                  }
+
+                                  {
+                                    showComments && <div>This is the comments section!</div>
+                                  }
+                              </div>
+                            </DialogContent>
+                          </Dialog>
+                        </div>
+                      </div>
+                    ))
+                  )}
                 </div>
               </div>
             </div>
